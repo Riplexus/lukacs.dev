@@ -1,25 +1,38 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+import IndexPage from './pages/index';
+
+Vue.use(Router);
+
+const handleError = (err) => {
+    console.error('Page routing failed');
+    throw err;
+};
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
-})
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: IndexPage
+        },
+        {
+            path: '/projects',
+            name: 'projects',
+            component: IndexPage
+        },
+        {
+            path: '/footer',
+            name: 'footer',
+            component: IndexPage
+        },
+        {
+            path: '/colors',
+            name: 'colors',
+            component: () => import( /* webpackChunkName: "colors" */ './pages/colors.vue').catch(handleError)
+        }
+    ]
+});

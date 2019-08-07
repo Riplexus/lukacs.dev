@@ -1,0 +1,14 @@
+{
+    "processors": [
+        "stylelint-processor-html"
+    ],
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "no-empty-source": null,
+        "selector-list-comma-newline-after": null,
+        "number-leading-zero": null,
+        "indentation": [4, {
+            "baseIndentLevel": 1
+        }]
+    }
+}
