@@ -1,19 +1,25 @@
 <template>
-    <section class="colors">
-        <color-view class="colors__color" color="dark20" />
-        <color-view class="colors__color" color="dark40" />
-        <color-view class="colors__color" color="dark60" />
-        <color-view class="colors__color" color="dark80" />
-        <color-view class="colors__color" color="dark100" />
-        <color-view class="colors__color" color="dark120" />
-    </section>
+    <div>
+        <section class="colors">
+            <color-view class="colors__color" color="dark20" />
+            <color-view class="colors__color" color="dark40" />
+            <color-view class="colors__color" color="dark60" />
+            <color-view class="colors__color" color="dark80" />
+            <color-view class="colors__color" color="dark100" />
+            <color-view class="colors__color" color="dark120" />
+        </section>
+
+        <footer-view />
+    </div>
 </template>
 
 <script>
-    import ColorView from "../components/ColorView";
+    import ColorView from '../components/ColorView';
+    import FooterView from '../components/FooterView';
+
     export default {
         name: 'Colors',
-        components: {ColorView}
+        components: { ColorView, FooterView, }
     };
 </script>
 

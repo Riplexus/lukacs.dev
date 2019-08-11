@@ -1,0 +1,36 @@
+RewriteEngine on
+
+# HTTP -> HTTPS redirect:
+RewriteCond %{HTTP:X-Forwarded-Proto} !^$
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [qsappend,redirect=permanent,last]
+
+# Serve static files:
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !=/index.html
+RewriteCond %{REQUEST_URI} !=/service-worker.js
+RewriteRule ^ - [last,env=N_INDEX:1]
+
+# Header for static files:
+Header set Cache-Control "public, max-age=31536000, s-maxage=600" env=N_INDEX
+
+# Identify index or service worker requests
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} =/index.html
+RewriteRule ^ - [last,env=INDEX:1]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} =/service-worker.js
+RewriteRule ^ - [last,env=SW:1]
+
+# Header for index or service worker requests
+Header always set Cache-Control "public, max-age=60, s-maxage=60" env=INDEX
+Header always set Cache-Control "public, max-age=0, s-maxage=0" env=SW
+
+# Rewrite rest to index:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/404
+RewriteRule ^(.*)$ / [NC,last,QSA]
+
+ErrorDocument 404 /

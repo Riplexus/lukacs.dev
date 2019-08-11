@@ -1,8 +1,10 @@
 <template>
     <div class="index">
-        <section class="index__tech-radar dark80" :class="{ inactive: activeSection !== 'tech-radar' }" ref="tech-radar">
+        <section class="index__tech-radar dark80" :class="{ inactive: !techRadarActive }" ref="tech-radar">
             <h2>TechRadar</h2>
         </section>
+
+        <door-view />
 
         <section-start-view
             class="index__projects-start"
@@ -10,7 +12,7 @@
             colorB="dark100"
             :ltr="false" />
 
-        <section class="index__projects dark100" :class="{ inactive: activeSection !== 'projects' }" ref="projects">
+        <section class="index__projects dark100" :class="{ inactive: !projectsActive }" ref="projects">
             <article-view />
             <article-view />
             <article-view />
@@ -21,31 +23,47 @@
             colorA="dark100"
             colorB="dark120"
             :ltr="true" />
+
+        <footer-view :class="{ inactive: !footerActive }" ref="footer"/>
     </div>
 </template>
 
 <script>
     import ArticleView from '../components/ArticleView';
     import SectionStartView from '../components/SectionStartView';
+    import FooterView from '../components/FooterView';
+    import DoorView from '../components/DoorView';
 
     export default {
         name: 'Index',
-        components: { SectionStartView, ArticleView },
+        components: { DoorView, SectionStartView, ArticleView, FooterView },
 
         computed: {
-            activeSection() {
-                return this.$store.state.activeSection;
+            activeSections() {
+                return this.$store.state.activeSections;
+            },
+            techRadarActive() {
+                return !this.activeSections.length || this.activeSections.indexOf('tech-radar') !== -1;
+            },
+            projectsActive() {
+                return !this.activeSections.length || this.activeSections.indexOf('projects') !== -1;
+            },
+            footerActive() {
+                return !this.activeSections.length || this.activeSections.indexOf('footer') !== -1;
             }
         },
 
         watch: {
-            activeSection() {
-                const route = this.activeSection === 'tech-radar' ? 'home' : this.activeSection;
-
-                if (this.$route.name !== route) {
-                    this.$router.replace({
-                        name: route
-                    });
+            activeSections() {
+                for (let section in this.$refs) {
+                    if (this.activeSections.indexOf(section) === -1) { continue; }
+                    const route = section === 'tech-radar' ? 'home' : section;
+                    if (this.$route.name !== route) {
+                        this.$router.replace({
+                            name: route
+                        });
+                    }
+                    break;
                 }
             }
         },
@@ -68,25 +86,24 @@
 
         methods: {
             handleScroll() {
-                const center = window.scrollY + window.innerHeight / 2;
+                const top = window.innerHeight * .4;
+                const bottom = window.innerHeight * .6;
 
-                let activeSection = null;
+                for (let section in this.$refs) {
+                    const position = (this.$refs[section].$el || this.$refs[section]).getBoundingClientRect();
+                    const isVisible = position.bottom >= top && position.top <= bottom;
+                    const isActive = this.activeSections.indexOf(section) !== -1;
 
-                if (window.scrollY + window.innerHeight >= document.body.clientHeight - 100) {
-                    activeSection = 'footer';
-                } else {
-                    let dist = Infinity;
-                    for (let section in this.$refs) {
-                        let distToSection = Math.abs(this.$refs[section].offsetHeight - center);
-                        if (dist > distToSection) {
-                            dist = distToSection;
-                            activeSection = section;
-                        }
+                    if (isVisible && !isActive) {
+                        this.$store.commit('addActiveSection', section);
+                    } else if (!isVisible && isActive) {
+                        this.$store.commit('removeActiveSection', section);
                     }
-                }
 
-                if (activeSection !== this.activeSection) {
-                    this.$store.commit('setActiveSection', activeSection);
+                    // stop the loop if our current element is already below the viewport bottom
+                    if (position.top >= bottom) {
+                        break;
+                    }
                 }
             }
         }

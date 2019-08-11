@@ -6,15 +6,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: () => {
         return {
-            activeSection: null
+            activeSections: []
         };
     },
     actions: {
 
     },
     mutations: {
-        setActiveSection(state, section) {
-            state.activeSection = section;
+        addActiveSection(state, section) {
+            if (state.activeSections.indexOf(section) !== -1) { return; }
+            state.activeSections.push(section);
+        },
+        removeActiveSection(state, section) {
+            let index = state.activeSections.indexOf(section);
+            if (index === -1) { return; }
+            state.activeSections.splice(index, 1);
         }
     }
 });

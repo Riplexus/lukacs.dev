@@ -1,20 +1,14 @@
 <template>
-    <div class="footer dark120" :class="{ inactive: activeSection !== 'footer' }">
+    <section class="footer dark120">
         <p>
             Impressum
         </p>
-    </div>
+    </section>
 </template>
 
 <script>
     export default {
-        name: 'FooterView',
-
-        computed: {
-            activeSection() {
-                return this.$store.state.activeSection;
-            }
-        }
+        name: 'FooterView'
     };
 </script>
 
@@ -23,6 +17,5 @@
 
     .footer {
         min-height: 400px;
-        transition: color .2s;
     }
 </style>

@@ -1,18 +1,12 @@
 <template>
     <div id="app">
-        <header-view />
         <router-view />
-        <footer-view />
     </div>
 </template>
 
 <script>
-    import HeaderView from './components/HeaderView';
-    import FooterView from './components/FooterView';
-
     export default {
         name: 'App',
-        components: { FooterView, HeaderView },
         metaInfo: {
             link: [
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap' }
@@ -27,6 +21,7 @@
     html, body {
         margin: 0;
         padding: 0;
+        background-color: $dark120;
     }
 
     #app {

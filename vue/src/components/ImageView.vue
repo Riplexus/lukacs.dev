@@ -3,7 +3,11 @@
         <transition name="fade">
             <div v-if="!isLoaded" class="image__placeholder"></div>
         </transition>
-        <img v-lazy-src="src" :alt="alt" @load="imageLoaded">
+        <img
+            v-lazy-src="src"
+            :alt="alt"
+            class="image__item"
+            @load="imageLoaded">
     </figure>
 </template>
 
@@ -53,7 +57,7 @@
         background-color: $dark80;
     }
 
-    img {
+    .image__item {
         width: 100%;
         height: 100%;
     }
