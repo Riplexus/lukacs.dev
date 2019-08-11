@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-        <section class="index__tech-radar dark80" :class="{ inactive: !techRadarActive }" ref="tech-radar">
+        <section class="index__tech-radar light40" :class="{ inactive: !techRadarActive }" ref="tech-radar">
             <h2>TechRadar</h2>
         </section>
 
@@ -8,8 +8,10 @@
 
         <section-start-view
             class="index__projects-start"
-            colorA="dark80"
-            colorB="dark100"
+            color-a-name="light"
+            :color-a-level="40"
+            color-b-name="dark"
+            :color-b-level="100"
             :ltr="false" />
 
         <section class="index__projects dark100" :class="{ inactive: !projectsActive }" ref="projects">
@@ -20,11 +22,13 @@
 
         <section-start-view
             class="index__footer-start"
-            colorA="dark100"
-            colorB="dark120"
+            color-a-name="dark"
+            :color-a-level="100"
+            color-b-name="purple"
+            :color-b-level="120"
             :ltr="true" />
 
-        <footer-view :class="{ inactive: !footerActive }" ref="footer"/>
+        <footer-view class="purple120" :class="{ inactive: !footerActive }" ref="footer"/>
     </div>
 </template>
 
@@ -122,19 +126,11 @@
         }
     }
 
-    .index__projects-start {
-        height: 100px;
-    }
-
     .index__projects {
         padding: 42px 0;
     }
 
     .index__tech-radar {
         min-height: 500px;
-    }
-
-    .index__footer-start {
-        height: 20px;
     }
 </style>

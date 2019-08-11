@@ -1,5 +1,5 @@
 <template>
-    <section class="footer dark120">
+    <section class="footer">
         <p>
             Impressum
         </p>

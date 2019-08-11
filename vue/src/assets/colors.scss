@@ -1,39 +1,83 @@
-$white: #fff;
-$gray10: #eee;
-$gray20: #dddcdd;
-$gray30: #cccbcc;
-$gray40: #bbbabb;
-$gray50: #aaa8aa;
-$gray60: #999799;
-$gray70: #888588;
-$gray80: #777477;
-$gray90: #666366;
-$gray100: #555155;
-$gray110: #444044;
-$gray120: #333033;
-$gray130: #222022;
-$gray140: #111011;
-$black: #000;
-
 // gunmetal: #2c363f
-$dark20: #d5d7d9;
-$dark40: #abafb2;
-$dark60: #80868c;
-$dark80: #565e65;
-$dark100: #2c363f;
-$dark120: #161b20;
+$dark20: #918c93;
+$dark40: #7f7981;
+$dark60: #6c676e;
+$dark80: #59555b;
+$dark100: #474448;
+$dark120: #3c393d;
 
-$dark20-font: #424a4d;
-$dark40-font: #222426;
-$dark60-font: #000;
-$dark80-font: #f6f8f8;
-$dark100-font: #ecf0f1;
-$dark120-font: #dadfe1;
+$dark20-font: #000;
+$dark40-font: #000;
+$dark60-font: #fff;
+$dark80-font: #fff;
+$dark100-font: #e1dfe1;
+$dark120-font: #d3cfd3;
 
-$no: #e75a7c; // dark pink
+// mint cream: #eefcfa
+$light20: #fbf7f3;
+$light40: #f7ede2;
+$light60: #f1e1cf;
+$light80: #ecd5bc;
+$light100: #e7caaa;
+$light120: #e2be97;
 
-$yes: #20fc8f; // medium spring green
+$light20-font: #834321;
+$light40-font: #723f1d;
+$light60-font: #67401e;
+$light80-font: #56381a;
+$light100-font: #4e3418;
+$light120-font: #462f16;
 
-$light: #eefcfa; // mint cream
+// dark pink: #e75a7c
+$pink20: #f1a4b6;
+$pink40: #ee8ba3;
+$pink60: #ea728f;
+$pink80: #e75a7c;
+$pink100: #e23d65;
+$pink120: #de214f;
 
-$highlight: #420039; // tyrian purple
+$pink20-font: #550c1f;
+$pink40-font: #400717;
+$pink60-font: #090103;
+$pink80-font: #3b0715;
+$pink100-font: #090103;
+$pink120-font: #fff;
+
+// medium spring green: #20fc8f
+$green20: #a1ffc7;
+$green40: #6ffdad;
+$green60: #20fc8f;
+$green80: #03ee79;
+$green100: #02d26b;
+$green120: #02b65d;
+
+$green20-font: #005221;
+$green40-font: #025024;
+$green60-font: #034926;
+$green80-font: #024021;
+$green100-font: #022c18;
+$green120-font: #020d07;
+
+// tyrian purple: #420039
+$purple20: #ff53e9;
+$purple40: #f332d2;
+$purple60: #c716ac;
+$purple80: #9a0085;
+$purple100: #6e005f;
+$purple120: #420039;
+
+$purple20-font: #1f001a;
+$purple40-font: #37062f;
+$purple60-font: #fff;
+$purple80-font: #fff0fd;
+$purple100-font: #ffb8f5;
+$purple120-font: #ff8ae4;
+
+@mixin color($color, $color-font) {
+    background-color: $color;
+    color: $color-font;
+
+    &.inactive {
+        color: adjust-color($color-font, $alpha: -.6);
+    }
+}

@@ -47,39 +47,38 @@
         box-sizing: border-box;
     }
 
-    .dark20 {
-        background-color: $dark20;
-        color: $dark20-font;
-        &.inactive { color: adjust-color($dark20-font, $alpha: -.6); }
-    }
+    .dark20 { @include color($dark20, $dark20-font); }
+    .dark40 { @include color($dark40, $dark40-font); }
+    .dark60 { @include color($dark60, $dark60-font); }
+    .dark80 { @include color($dark80, $dark80-font); }
+    .dark100 { @include color($dark100, $dark100-font); }
+    .dark120 { @include color($dark120, $dark120-font); }
 
-    .dark40 {
-        background-color: $dark40;
-        color: $dark40-font;
-        &.inactive { color: adjust-color($dark40-font, $alpha: -.6); }
-    }
+    .light20 { @include color($light20, $light20-font); }
+    .light40 { @include color($light40, $light40-font); }
+    .light60 { @include color($light60, $light60-font); }
+    .light80 { @include color($light80, $light80-font); }
+    .light100 { @include color($light100, $light100-font); }
+    .light120 { @include color($light120, $light120-font); }
 
-    .dark60 {
-        background-color: $dark60;
-        color: $dark60-font;
-        &.inactive { color: adjust-color($dark60-font, $alpha: -.6); }
-    }
+    .pink20 { @include color($pink20, $pink20-font); }
+    .pink40 { @include color($pink40, $pink40-font); }
+    .pink60 { @include color($pink60, $pink60-font); }
+    .pink80 { @include color($pink80, $pink80-font); }
+    .pink100 { @include color($pink100, $pink100-font); }
+    .pink120 { @include color($pink120, $pink120-font); }
 
-    .dark80 {
-        background-color: $dark80;
-        color: $dark80-font;
-        &.inactive { color: adjust-color($dark80-font, $alpha: -.6); }
-    }
+    .green20 { @include color($green20, $green20-font); }
+    .green40 { @include color($green40, $green40-font); }
+    .green60 { @include color($green60, $green60-font); }
+    .green80 { @include color($green80, $green80-font); }
+    .green100 { @include color($green100, $green100-font); }
+    .green120 { @include color($green120, $green120-font); }
 
-    .dark100 {
-        background-color: $dark100;
-        color: $dark100-font;
-        &.inactive { color: adjust-color($dark100-font, $alpha: -.6); }
-    }
-
-    .dark120 {
-        background-color: $dark120;
-        color: $dark120-font;
-        &.inactive { color: adjust-color($dark120-font, $alpha: -.6); }
-    }
+    .purple20 { @include color($purple20, $purple20-font); }
+    .purple40 { @include color($purple40, $purple40-font); }
+    .purple60 { @include color($purple60, $purple60-font); }
+    .purple80 { @include color($purple80, $purple80-font); }
+    .purple100 { @include color($purple100, $purple100-font); }
+    .purple120 { @include color($purple120, $purple120-font); }
 </style>
