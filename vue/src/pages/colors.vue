@@ -2,10 +2,19 @@
     <div class="colors">
         <section class="colors__palette">
             <color-view class="colors__color" color="dark100" />
-            <color-view class="colors__color" color="light40" />
+            <color-view class="colors__color" color="black100" />
+            <color-view class="colors__color" color="purple100" />
             <color-view class="colors__color" color="pink80" />
             <color-view class="colors__color" color="green60" />
-            <color-view class="colors__color" color="purple120" />
+        </section>
+
+        <section class="colors__hues">
+            <color-view class="colors__color" color="black20" />
+            <color-view class="colors__color" color="black40" />
+            <color-view class="colors__color" color="black60" />
+            <color-view class="colors__color" color="black80" />
+            <color-view class="colors__color" color="black100" />
+            <color-view class="colors__color" color="black120" />
         </section>
 
         <section class="colors__hues">
@@ -27,6 +36,15 @@
         </section>
 
         <section class="colors__hues">
+            <color-view class="colors__color" color="purple20" />
+            <color-view class="colors__color" color="purple40" />
+            <color-view class="colors__color" color="purple60" />
+            <color-view class="colors__color" color="purple80" />
+            <color-view class="colors__color" color="purple100" />
+            <color-view class="colors__color" color="purple120" />
+        </section>
+
+        <section class="colors__hues">
             <color-view class="colors__color" color="pink20" />
             <color-view class="colors__color" color="pink40" />
             <color-view class="colors__color" color="pink60" />
@@ -42,15 +60,6 @@
             <color-view class="colors__color" color="green80" />
             <color-view class="colors__color" color="green100" />
             <color-view class="colors__color" color="green120" />
-        </section>
-
-        <section class="colors__hues">
-            <color-view class="colors__color" color="purple20" />
-            <color-view class="colors__color" color="purple40" />
-            <color-view class="colors__color" color="purple60" />
-            <color-view class="colors__color" color="purple80" />
-            <color-view class="colors__color" color="purple100" />
-            <color-view class="colors__color" color="purple120" />
         </section>
 
         <footer-view class="dark120" />

@@ -1,83 +1,107 @@
-// gunmetal: #2c363f
-$dark20: #918c93;
-$dark40: #7f7981;
-$dark60: #6c676e;
-$dark80: #59555b;
-$dark100: #474448;
-$dark120: #3c393d;
+$black: (
+    bgr: #3e4c5a #35404c #2b343e #212830 #121619 #000,
+    font: #f4f4f5 #e2e2e4 #cfcfd3 #c9c9cf #b8b8bc #b3b3b7,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
 
-$dark20-font: #000;
-$dark40-font: #000;
-$dark60-font: #fff;
-$dark80-font: #fff;
-$dark100-font: #e1dfe1;
-$dark120-font: #d3cfd3;
+/*
+grau
 
-// mint cream: #eefcfa
-$light20: #fbf7f3;
-$light40: #f7ede2;
-$light60: #f1e1cf;
-$light80: #ecd5bc;
-$light100: #e7caaa;
-$light120: #e2be97;
+$dark: (
+    bgr: #918c93 #7f7981 #6c676e #59555b #474448 #3c393d,
+    font: #000 #000 #fff #fff #e1dfe1 #d3cfd3,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
+ */
 
-$light20-font: #834321;
-$light40-font: #723f1d;
-$light60-font: #67401e;
-$light80-font: #56381a;
-$light100-font: #4e3418;
-$light120-font: #462f16;
+/*
+feldgrau
 
-// dark pink: #e75a7c
-$pink20: #f1a4b6;
-$pink40: #ee8ba3;
-$pink60: #ea728f;
-$pink80: #e75a7c;
-$pink100: #e23d65;
-$pink120: #de214f;
+$dark: (
+    bgr: #5b8882 #547d78 #4d736e #466864 #3f5e5a #385451,
+    font: #000 #000 #000 #000 #000 #000 #000,
+    emphasis: #000 #000 #000 #000 #000 #000 #000
+);
+*/
 
-$pink20-font: #550c1f;
-$pink40-font: #400717;
-$pink60-font: #090103;
-$pink80-font: #3b0715;
-$pink100-font: #090103;
-$pink120-font: #fff;
+$dark: (
+    bgr: #2d4a6b #263f5c #20344c #19293c #131f2d #0f1824,
+    font: #edf2f7 #d8e1ee #b9d2df #a0b6d4 #91adcf #90a6cb,
+    emphasis: #000 #000 #000 #000 #000 #000 #000
+);
 
-// medium spring green: #20fc8f
-$green20: #a1ffc7;
-$green40: #6ffdad;
-$green60: #20fc8f;
-$green80: #03ee79;
-$green100: #02d26b;
-$green120: #02b65d;
+$light: (
+    bgr: #3c6fa0 #345f89 #2e557b #294c6d #24425f #1f3852,
+    font: #fff #fff #fff #fff #fff #fff,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
 
-$green20-font: #005221;
-$green40-font: #025024;
-$green60-font: #034926;
-$green80-font: #024021;
-$green100-font: #022c18;
-$green120-font: #020d07;
+$purple: (
+    bgr: #ff53e9 #f332d2 #c716ac #9a0085 #6e005f #420039,
+    font: #1f001a #37062f #fff #fff0fd #ffb8f5 #ff8ae4,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
 
-// tyrian purple: #420039
-$purple20: #ff53e9;
-$purple40: #f332d2;
-$purple60: #c716ac;
-$purple80: #9a0085;
-$purple100: #6e005f;
-$purple120: #420039;
+$pink: (
+    bgr: #f1a4b6 #ee8ba3 #ea728f #e75a7c #e23d65 #de214f,
+    font: #550c1f #400717 #090103 #3b0715 #090103 #fff,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
 
-$purple20-font: #1f001a;
-$purple40-font: #37062f;
-$purple60-font: #fff;
-$purple80-font: #fff0fd;
-$purple100-font: #ffb8f5;
-$purple120-font: #ff8ae4;
+$green: (
+    bgr: #a1ffc7 #6ffdad #20fc8f #03ee79 #02d26b #02b65d,
+    font: #005221 #025024 #034926 #024021 #022c18 #020d07,
+    emphasis: #f00 #f00 #f00 #f00 #f00 #f00
+);
 
-@mixin color($color, $color-font) {
-    background-color: $color;
-    color: $color-font;
+@mixin color($color, $index) {
+    background-color: nth(map-get($color, 'bgr'), $index);
+    fill: nth(map-get($color, 'bgr'), $index);
+    color: nth(map-get($color, 'font'), $index);
 
-    &.inactive {
-        color: adjust-color($color-font, $alpha: -.6);
+    &.placeholder, .placeholer &, & .placeholder {
+        background-color: nth(map-get($color, 'bgr'), max($index - 1, 1));
+    }
+
+    &.inactive, .inactive &, & .inactive {
+        color: adjust-color(nth(map-get($color, 'font'), $index), $alpha: -.6);
+    }
+
+    &.emphasis, .emphasis &, & .emphasis {
+        color: nth(map-get($color, 'emphasis'), $index);
+    }
+
+    & .inactive .emphasis, .inactive & .emphasis, .inactive .emphasis &,
+    &.inactive.emphasis,
+    .inactive &.emphasis, &.emphasis .inactive,
+    .emphasis &.inactive, &.inactive .emphasis {
+        color: adjust-color(nth(map-get($color, 'emphasis'), $index), $alpha: -.6);
+    }
+
+    &.triangle {
+        color: nth(map-get($color, 'bgr'), $index);
+        background:
+            linear-gradient(
+                to top left,
+                nth(map-get($color, 'bgr'), $index) 0%,
+                nth(map-get($color, 'bgr'), $index) calc(50% - 0.8px),
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, 0) 100%
+            );
+
+        &.ltr {
+            background:
+                linear-gradient(
+                    to top right,
+                    nth(map-get($color, 'bgr'), $index) 0%,
+                    nth(map-get($color, 'bgr'), $index) calc(50% - 0.8px),
+                    rgba(0, 0, 0, 0) 50%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+        }
+
+        &::after {
+            background: nth(map-get($color, 'bgr'), $index);
+        }
     }
 }

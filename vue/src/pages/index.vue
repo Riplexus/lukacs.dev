@@ -1,46 +1,42 @@
 <template>
     <div class="index">
-        <section class="index__tech-radar light40" :class="{ inactive: !techRadarActive }" ref="tech-radar">
-            <h2>TechRadar</h2>
+
+        <section class="index__tech-radar dark60" :class="{ inactive: !techRadarActive }" ref="tech-radar">
+            <h1>Hello there.</h1>
         </section>
 
         <door-view />
 
-        <section-start-view
+        <separator-view
             class="index__projects-start"
-            color-a-name="light"
-            :color-a-level="40"
-            color-b-name="dark"
-            :color-b-level="100"
-            :ltr="false" />
+            color-a="dark60"
+            color-b="black100" />
 
-        <section class="index__projects dark100" :class="{ inactive: !projectsActive }" ref="projects">
+        <section class="index__projects black100" :class="{ inactive: !projectsActive }" ref="projects">
             <article-view />
             <article-view />
             <article-view />
         </section>
 
-        <section-start-view
+        <separator-view
             class="index__footer-start"
-            color-a-name="dark"
-            :color-a-level="100"
-            color-b-name="purple"
-            :color-b-level="120"
-            :ltr="true" />
+            color-a="black100"
+            color-b="black120"
+            :with-ornaments="false" />
 
-        <footer-view class="purple120" :class="{ inactive: !footerActive }" ref="footer"/>
+        <footer-view class="black120" :class="{ inactive: !footerActive }" ref="footer"/>
     </div>
 </template>
 
 <script>
     import ArticleView from '../components/ArticleView';
-    import SectionStartView from '../components/SectionStartView';
+    import SeparatorView from '../components/SeparatorView';
     import FooterView from '../components/FooterView';
     import DoorView from '../components/DoorView';
 
     export default {
         name: 'Index',
-        components: { DoorView, SectionStartView, ArticleView, FooterView },
+        components: { DoorView, SeparatorView, ArticleView, FooterView },
 
         computed: {
             activeSections() {
@@ -118,6 +114,7 @@
     @import "../assets/colors";
 
     section {
+        position: relative;
         transition: color .2s;
 
         & > * {
@@ -132,5 +129,6 @@
 
     .index__tech-radar {
         min-height: 500px;
+        background: linear-gradient(to top, #20344c 0%, #121619 70%);
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <figure class="image">
         <transition name="fade">
-            <div v-if="!isLoaded" class="image__placeholder"></div>
+            <div v-if="!isLoaded" class="image__placeholder placeholder"></div>
         </transition>
         <img
             v-lazy-src="src"
@@ -54,7 +54,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: $dark80;
     }
 
     .image__item {

@@ -21,7 +21,6 @@
     html, body {
         margin: 0;
         padding: 0;
-        background-color: $dark120;
     }
 
     #app {
@@ -29,7 +28,6 @@
         font-size: 12pt;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
     }
 
     h1, h2, h3 {
@@ -47,38 +45,53 @@
         box-sizing: border-box;
     }
 
-    .dark20 { @include color($dark20, $dark20-font); }
-    .dark40 { @include color($dark40, $dark40-font); }
-    .dark60 { @include color($dark60, $dark60-font); }
-    .dark80 { @include color($dark80, $dark80-font); }
-    .dark100 { @include color($dark100, $dark100-font); }
-    .dark120 { @include color($dark120, $dark120-font); }
+    .bold {
+        font-weight: 700;
+    }
 
-    .light20 { @include color($light20, $light20-font); }
-    .light40 { @include color($light40, $light40-font); }
-    .light60 { @include color($light60, $light60-font); }
-    .light80 { @include color($light80, $light80-font); }
-    .light100 { @include color($light100, $light100-font); }
-    .light120 { @include color($light120, $light120-font); }
+    .big {
+        font-size: 18pt;
+    }
 
-    .pink20 { @include color($pink20, $pink20-font); }
-    .pink40 { @include color($pink40, $pink40-font); }
-    .pink60 { @include color($pink60, $pink60-font); }
-    .pink80 { @include color($pink80, $pink80-font); }
-    .pink100 { @include color($pink100, $pink100-font); }
-    .pink120 { @include color($pink120, $pink120-font); }
+    .black20 { @include color($black, 1); }
+    .black40 { @include color($black, 2); }
+    .black60 { @include color($black, 3); }
+    .black80 { @include color($black, 4); }
+    .black100 { @include color($black, 5); }
+    .black120 { @include color($black, 6); }
 
-    .green20 { @include color($green20, $green20-font); }
-    .green40 { @include color($green40, $green40-font); }
-    .green60 { @include color($green60, $green60-font); }
-    .green80 { @include color($green80, $green80-font); }
-    .green100 { @include color($green100, $green100-font); }
-    .green120 { @include color($green120, $green120-font); }
+    .dark20 { @include color($dark, 1); }
+    .dark40 { @include color($dark, 2); }
+    .dark60 { @include color($dark, 3); }
+    .dark80 { @include color($dark, 4); }
+    .dark100 { @include color($dark, 5); }
+    .dark120 { @include color($dark, 6); }
 
-    .purple20 { @include color($purple20, $purple20-font); }
-    .purple40 { @include color($purple40, $purple40-font); }
-    .purple60 { @include color($purple60, $purple60-font); }
-    .purple80 { @include color($purple80, $purple80-font); }
-    .purple100 { @include color($purple100, $purple100-font); }
-    .purple120 { @include color($purple120, $purple120-font); }
+    .light20 { @include color($light, 1); }
+    .light40 { @include color($light, 2); }
+    .light60 { @include color($light, 3); }
+    .light80 { @include color($light, 4); }
+    .light100 { @include color($light, 5); }
+    .light120 { @include color($light, 6); }
+
+    .pink20 { @include color($pink, 1); }
+    .pink40 { @include color($pink, 2); }
+    .pink60 { @include color($pink, 3); }
+    .pink80 { @include color($pink, 4); }
+    .pink100 { @include color($pink, 5); }
+    .pink120 { @include color($pink, 6); }
+
+    .green20 { @include color($green, 1); }
+    .green40 { @include color($green, 2); }
+    .green60 { @include color($green, 3); }
+    .green80 { @include color($green, 4); }
+    .green100 { @include color($green, 5); }
+    .green120 { @include color($green, 6); }
+
+    .purple20 { @include color($purple, 1); }
+    .purple40 { @include color($purple, 2); }
+    .purple60 { @include color($purple, 3); }
+    .purple80 { @include color($purple, 4); }
+    .purple100 { @include color($purple, 5); }
+    .purple120 { @include color($purple, 6); }
 </style>
