@@ -41,7 +41,7 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
-        padding: 6px;
+        padding: 0 0 24px;
         max-width: 1400px;
         box-sizing: border-box;
         margin: auto;
@@ -49,7 +49,7 @@
         .c-article__image {
             width: 400px;
             height: 200px;
-            margin: 6px 24px;
+            margin: 6px 24px 24px;
         }
     }
 </style>

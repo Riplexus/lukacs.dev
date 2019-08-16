@@ -65,7 +65,7 @@ $green: (
     }
 
     &.inactive, .inactive &, & .inactive {
-        color: adjust-color(nth(map-get($color, 'font'), $index), $alpha: -.6);
+        color: adjust-color(nth(map-get($color, 'font'), $index), $alpha: -.8);
     }
 
     &.emphasis, .emphasis &, & .emphasis {
@@ -80,7 +80,7 @@ $green: (
     &.inactive.emphasis,
     .inactive &.emphasis, &.emphasis .inactive,
     .emphasis &.inactive, &.inactive .emphasis {
-        color: adjust-color(nth(map-get($color, 'emphasis'), $index), $alpha: -.6);
+        color: adjust-color(nth(map-get($color, 'emphasis'), $index), $alpha: -.8);
     }
 
     &.triangle {

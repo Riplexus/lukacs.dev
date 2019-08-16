@@ -61,10 +61,11 @@
         min-height: $totalHeight;
         position: relative;
         margin: 6px 24px;
-    }
+        transition: opacity .2s;
 
-    .c-tech-radar__details {
-        padding: 6px;
+        .inactive & {
+            opacity: .3;
+        }
     }
 
     /*

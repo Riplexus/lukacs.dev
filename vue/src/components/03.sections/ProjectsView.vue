@@ -16,6 +16,6 @@
 
 <style scoped lang="scss">
     .c-projects {
-        padding: 60px 0;
+        padding: 60px;
     }
 </style>

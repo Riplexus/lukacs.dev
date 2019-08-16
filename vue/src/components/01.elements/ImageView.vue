@@ -76,7 +76,7 @@
         transition: opacity .2s;
 
         .inactive & {
-            opacity: .5;
+            opacity: .1;
         }
     }
 
