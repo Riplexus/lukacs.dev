@@ -11,3 +11,9 @@
         name: 'HeaderView'
     };
 </script>
+
+<style scoped lang="scss">
+    .c-header {
+        min-height: calc(100vh - 400px - 200px);
+    }
+</style>

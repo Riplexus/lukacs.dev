@@ -86,6 +86,10 @@
         font-size: 18pt;
     }
 
+    .italic {
+        font-style: italic;
+    }
+
     .black20 { @include color($black, 1); }
     .black40 { @include color($black, 2); }
     .black60 { @include color($black, 3); }
