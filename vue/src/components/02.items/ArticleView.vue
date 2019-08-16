@@ -47,9 +47,15 @@
         margin: auto;
 
         .c-article__image {
-            width: 400px;
-            height: 200px;
+            flex: 0 1 400px;
             margin: 6px 24px 24px;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 100%;
+                padding-bottom: 50%;
+            }
         }
     }
 </style>

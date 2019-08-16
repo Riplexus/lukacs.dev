@@ -40,11 +40,11 @@
             <section v-if="!selection" class="article c-tech-radar__details">
                 <h2>Technology Radar</h2>
                 <p>Living in a fast changing world where your colleagues greet you daily with "look at this new
-                    framework" it became useful for the mental health to thoroughly validate upcoming trends.</p>
+                    framework" it became useful for the mental health to thoroughly validate upcoming trends first.</p>
                 <p>One way of keeping track of your evaluation process is with a <span class="italic">technology radar</span> following
                     the principles and ideas of <a href="https://www.thoughtworks.com/" target="_blank" rel="noopener">ThoughtWorks</a>.</p>
-                <p>Take a look at their work, it's especially useful in business environments with large teams to
-                    maintain a stable technology stack. Touch or click the rings for my technology stack.</p>
+                <p>Take a look at their work. It's especially useful in business environments with large teams to
+                    maintain a stable technology stack. Touch or click the rings for my personal technology stack.</p>
             </section>
 
             <section v-else-if="selection === 'assess'" class="article c-tech-radar__details">
@@ -192,6 +192,7 @@
 
         methods: {
             select(ring, ev) {
+                if (ring === this.selection) { return this.deselect(); }
                 document.removeEventListener('click', this.deselect);
                 this.selection = ring;
                 document.addEventListener('click', this.deselect);
@@ -315,10 +316,10 @@
     .c-tech-radar__tech--trial { opacity: .6; }
     .c-tech-radar__tech--adopt { opacity: .9; }
 
-    .c-tech-radar__tech--tool { background: green; }
-    .c-tech-radar__tech--language { background: red; }
-    .c-tech-radar__tech--platform { background: orange; }
-    .c-tech-radar__tech--teq { background: cyan; }
+    .c-tech-radar__tech--tool { background: #379392; }
+    .c-tech-radar__tech--language { background: #D62828; }
+    .c-tech-radar__tech--platform { background: #f46036; }
+    .c-tech-radar__tech--teq { background: #1481ba; }
 
     @mixin tech($size, $radius, $angle) {
         width: $size;
