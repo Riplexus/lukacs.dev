@@ -8,6 +8,7 @@
             :alt="alt"
             class="c-image__item"
             @load="imageLoaded">
+        <div class="font c-image__border" />
     </figure>
 </template>
 
@@ -54,11 +55,29 @@
         left: 0;
         right: 0;
         bottom: 0;
+        border-radius: 12px;
+    }
+
+    .c-image__border {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        border: 6px solid;
+        border-radius: 12px;
+        background: transparent;
     }
 
     .c-image__item {
         width: 100%;
         height: 100%;
+        border-radius: 12px;
+        transition: opacity .2s;
+
+        .inactive & {
+            opacity: .5;
+        }
     }
 
     .fade-enter-active, .fade-leave-active {
