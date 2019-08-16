@@ -1,6 +1,6 @@
 <template>
-    <div class="color" :class="color">
-        <h2 class="color__type">{{ color }}</h2>
+    <div class="c-color" :class="color">
+        <h2 class="c-color__type">{{ color }}</h2>
         <p class="big">The quick onyx goblin jumps over the lazy dwarf.</p>
         <p class="bold">The quick onyx goblin jumps over the lazy dwarf.</p>
         <p>The quick onyx goblin jumps over the lazy dwarf.</p>
@@ -21,13 +21,13 @@
 </script>
 
 <style scoped lang="scss">
-    .color {
+    .c-color {
         display: flex;
         align-items: flex-end;
         flex-wrap: wrap;
     }
 
-    .color__type {
+    .c-color__type {
         margin-bottom: 24px;
     }
 </style>

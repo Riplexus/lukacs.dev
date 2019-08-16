@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import IndexPage from './pages/index';
+import IndexPage from './components/04.pages/index';
 
 Vue.use(Router);
 
@@ -20,6 +20,11 @@ export default new Router({
             component: IndexPage
         },
         {
+            path: '/tech-radar',
+            name: 'tech-radar',
+            component: IndexPage
+        },
+        {
             path: '/projects',
             name: 'projects',
             component: IndexPage
@@ -32,7 +37,7 @@ export default new Router({
         {
             path: '/colors',
             name: 'colors',
-            component: () => import( /* webpackChunkName: "colors" */ './pages/colors.vue').catch(handleError)
+            component: () => import( /* webpackChunkName: "colors" */ './components/04.pages/colors.vue').catch(handleError)
         }
     ]
 });

@@ -1,12 +1,12 @@
 <template>
-    <figure class="image">
+    <figure class="c-image">
         <transition name="fade">
-            <div v-if="!isLoaded" class="image__placeholder placeholder"></div>
+            <div v-if="!isLoaded" class="c-image__placeholder placeholder"></div>
         </transition>
         <img
             v-lazy-src="src"
             :alt="alt"
-            class="image__item"
+            class="c-image__item"
             @load="imageLoaded">
     </figure>
 </template>
@@ -41,14 +41,14 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/colors.scss";
+    @import "../../assets/colors";
 
-    .image {
+    .c-image {
         position: relative;
         transition: opacity .2s;
     }
 
-    .image__placeholder {
+    .c-image__placeholder {
         position: absolute;
         top: 0;
         left: 0;
@@ -56,7 +56,7 @@
         bottom: 0;
     }
 
-    .image__item {
+    .c-image__item {
         width: 100%;
         height: 100%;
     }

@@ -1,12 +1,12 @@
 <template>
-    <article class="article">
+    <article class="c-article">
         <image-view
             :src="imgSrc"
             alt="project image"
-            class="article__image" />
+            class="c-article__image" />
 
-        <section>
-            <h2 class="article__header">Project A: a simple refactoring</h2>
+        <section class="article">
+            <h2>Project A: a simple refactoring</h2>
             <p>Let's get wild today. All you need is a dream in your heart, and an almighty knife. Anything you want
                 to do you can do here.</p>
             <p>Trees grow in all kinds of ways. They're not all perfectly straight. Not every limb is perfect. There
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import ImageView from './ImageView';
+    import ImageView from '../01.elements/ImageView';
 
     export default {
         name: 'ArticleView',
@@ -36,33 +36,20 @@
 </script>
 
 <style scoped lang="scss">
-    .article {
+    .c-article {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
         padding: 6px;
+        max-width: 1400px;
+        box-sizing: border-box;
+        margin: auto;
 
-        .article__image {
+        .c-article__image {
             width: 400px;
             height: 200px;
-        }
-
-        section {
-            flex: 1 0 300px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            align-content: flex-start;
-
-            .article__header {
-                flex: 0 0 100%;
-            }
-
-            p {
-                flex: 1 0 200px;
-                max-width: 400px;
-            }
+            margin: 6px 24px;
         }
     }
 </style>

@@ -1,12 +1,17 @@
 <template>
-    <div id="app">
-        <router-view />
+    <div>
+        <header-view class="black100" />
+        <router-view class="main" />
+        <footer-view class="black120" />
     </div>
 </template>
 
 <script>
+    import HeaderView from './components/03.sections/HeaderView';
+    import FooterView from './components/03.sections/FooterView';
     export default {
         name: 'App',
+        components: {FooterView, HeaderView},
         metaInfo: {
             link: [
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap' }
@@ -18,12 +23,12 @@
 <style lang="scss">
     @import "./assets/colors";
 
-    html, body {
+    html, body, figure {
         margin: 0;
         padding: 0;
     }
 
-    #app {
+    html {
         font-family: 'Raleway', Arial, sans-serif;
         font-size: 12pt;
         -webkit-font-smoothing: antialiased;
@@ -43,6 +48,34 @@
         margin: 0;
         padding: 6px;
         box-sizing: border-box;
+    }
+
+    .main {
+        overflow: hidden;
+    }
+
+    .section {
+        position: relative;
+        max-width: 1400px;
+        margin: auto;
+        padding: 0 60px;
+    }
+
+    .article {
+        flex: 1 0 250px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+
+        h2 {
+            flex: 0 0 100%;
+        }
+
+        p {
+            flex: 1 0 250px;
+            max-width: 450px;
+        }
     }
 
     .bold {

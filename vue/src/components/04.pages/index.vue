@@ -1,42 +1,34 @@
 <template>
-    <div class="index">
-
-        <section class="index__tech-radar dark60" :class="{ inactive: !techRadarActive }" ref="tech-radar">
-            <h1>Hello there.</h1>
-        </section>
-
-        <door-view />
+    <main class="p-index" role="main">
+        <tech-radar-view
+            class="dark60 toDark60"
+            :class="{ inactive: !techRadarActive }"
+            ref="tech-radar" />
 
         <separator-view
-            class="index__projects-start"
             color-a="dark60"
             color-b="black100" />
 
-        <section class="index__projects black100" :class="{ inactive: !projectsActive }" ref="projects">
-            <article-view />
-            <article-view />
-            <article-view />
-        </section>
+        <projects-view
+            class="black100"
+            :class="{ inactive: !projectsActive }"
+            ref="projects" />
 
         <separator-view
-            class="index__footer-start"
             color-a="black100"
             color-b="black120"
             :with-ornaments="false" />
-
-        <footer-view class="black120" :class="{ inactive: !footerActive }" ref="footer"/>
-    </div>
+    </main>
 </template>
 
 <script>
-    import ArticleView from '../components/ArticleView';
-    import SeparatorView from '../components/SeparatorView';
-    import FooterView from '../components/FooterView';
-    import DoorView from '../components/DoorView';
+    import TechRadarView from '../03.sections/TechRadarView';
+    import ProjectsView from '../03.sections/ProjectsView';
+    import SeparatorView from '../03.sections/SeparatorView';
 
     export default {
         name: 'Index',
-        components: { DoorView, SeparatorView, ArticleView, FooterView },
+        components: { ProjectsView, TechRadarView, SeparatorView },
 
         computed: {
             activeSections() {
@@ -47,9 +39,6 @@
             },
             projectsActive() {
                 return !this.activeSections.length || this.activeSections.indexOf('projects') !== -1;
-            },
-            footerActive() {
-                return !this.activeSections.length || this.activeSections.indexOf('footer') !== -1;
             }
         },
 
@@ -57,7 +46,7 @@
             activeSections() {
                 for (let section in this.$refs) {
                     if (this.activeSections.indexOf(section) === -1) { continue; }
-                    const route = section === 'tech-radar' ? 'home' : section;
+                    const route = section === 'welcome' ? 'home' : section;
                     if (this.$route.name !== route) {
                         this.$router.replace({
                             name: route
@@ -111,24 +100,13 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/colors";
+    @import "../../assets/colors";
 
-    section {
-        position: relative;
+    .p-index > * {
         transition: color .2s;
-
-        & > * {
-            margin: auto;
-            max-width: 1400px;
-        }
     }
 
-    .index__projects {
-        padding: 42px 0;
-    }
-
-    .index__tech-radar {
-        min-height: 500px;
-        background: linear-gradient(to top, #20344c 0%, #121619 70%);
+    .toDark60 {
+        background: linear-gradient(to top, nth(map-get($dark, 'bgr'), 3) 0%, nth(map-get($black, 'bgr'), 5) 70%);
     }
 </style>
