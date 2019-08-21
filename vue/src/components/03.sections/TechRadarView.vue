@@ -317,7 +317,7 @@
     .c-tech-radar__tech--adopt { opacity: .9; }
 
     .c-tech-radar__tech--tool { background: #379392; }
-    .c-tech-radar__tech--language { background: #D62828; }
+    .c-tech-radar__tech--language { background: #d62828; }
     .c-tech-radar__tech--platform { background: #f46036; }
     .c-tech-radar__tech--teq { background: #1481ba; }
 

@@ -3,12 +3,15 @@
         <header-view class="black100" />
         <router-view class="main" />
         <footer-view class="black120" />
+
+
     </div>
 </template>
 
 <script>
     import HeaderView from './components/03.sections/HeaderView';
     import FooterView from './components/03.sections/FooterView';
+
     export default {
         name: 'App',
         components: {FooterView, HeaderView},
@@ -44,10 +47,18 @@
         font-weight: normal;
     }
 
+    a, a:visited, a:active, a:hover {
+        color: inherit;
+    }
+
     p {
         margin: 0;
         padding: 6px;
         box-sizing: border-box;
+    }
+
+    *[hidden] {
+        display: none;
     }
 
     .main {
@@ -69,12 +80,16 @@
         align-content: flex-start;
 
         h2 {
-            flex: 0 0 100%;
+            flex: 0 0 calc(100% - 12px);
+            margin: 0 6px 12px;
+            min-height: 29px + 12px;
         }
 
         p {
             flex: 1 0 250px;
             max-width: 450px;
+            min-height: 100px;
+            margin: 6px;
         }
     }
 

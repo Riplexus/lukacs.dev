@@ -1,5 +1,7 @@
 <template>
     <main class="p-index" role="main">
+        <welcome-view class="black100" />
+
         <tech-radar-view
             class="dark60 toDark60"
             :class="{ inactive: !techRadarActive }"
@@ -25,10 +27,11 @@
     import TechRadarView from '../03.sections/TechRadarView';
     import ProjectsView from '../03.sections/ProjectsView';
     import SeparatorView from '../03.sections/SeparatorView';
+    import WelcomeView from '../03.sections/WelcomeView';
 
     export default {
         name: 'Index',
-        components: { ProjectsView, TechRadarView, SeparatorView },
+        components: { WelcomeView, ProjectsView, TechRadarView, SeparatorView },
 
         computed: {
             activeSections() {
@@ -46,7 +49,7 @@
             activeSections() {
                 for (let section in this.$refs) {
                     if (this.activeSections.indexOf(section) === -1) { continue; }
-                    const route = section === 'welcome' ? 'home' : section;
+                    const route = section === 'welcome' || section === 'tech-radar' ? 'home' : section;
                     if (this.$route.name !== route) {
                         this.$router.replace({
                             name: route

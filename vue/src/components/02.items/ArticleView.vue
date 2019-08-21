@@ -80,16 +80,5 @@
                 opacity: .5;
             }
         }
-
-        h2.placeholder {
-            margin-bottom: 12px;
-            height: 29px + 12px;
-        }
-
-        p.placeholder {
-            height: 100px;
-            margin-right: 12px;
-            &:last-child { margin-right: 0; }
-        }
     }
 </style>

@@ -57,7 +57,7 @@ $green: (
 @mixin color($color, $index) {
     background-color: nth(map-get($color, 'bgr'), $index);
     border-color: nth(map-get($color, 'bgr'), $index);
-    fill: nth(map-get($color, 'bgr'), $index);
+    fill: nth(map-get($color, 'font'), $index);
     color: nth(map-get($color, 'font'), $index);
 
     &.placeholder, .placeholer &, & .placeholder {
@@ -72,8 +72,9 @@ $green: (
         color: nth(map-get($color, 'emphasis'), $index);
     }
 
-    &.font, .font &, & .font {
+    .font &, & .font, body &.font {
         color: nth(map-get($color, 'bgr'), $index);
+        fill: nth(map-get($color, 'bgr'), $index);
     }
 
     & .inactive .emphasis, .inactive & .emphasis, .inactive .emphasis &,

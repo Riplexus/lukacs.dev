@@ -6,7 +6,7 @@
             </svg>
         </div>
 
-        <div class="c-separator__line c-separator__line--5 triangle" :class="colorB">
+        <div class="c-separator__line c-separator__line--5 triangle font" :class="colorB">
             <div v-if="withOrnaments">
                 <div class="c-separator__tree c-separator__tree--5-a">
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' height='1' width='1'></svg>" alt="tree">
@@ -22,8 +22,8 @@
                 </div>
             </div>
         </div>
-        <div class="c-separator__line c-separator__line--4 triangle" :class="colorB"></div>
-        <div class="c-separator__line c-separator__line--3 triangle ltr" :class="colorB">
+        <div class="c-separator__line c-separator__line--4 triangle font" :class="colorB"></div>
+        <div class="c-separator__line c-separator__line--3 triangle font ltr" :class="colorB">
             <div v-if="withOrnaments">
                 <div class="c-separator__tree c-separator__tree--3-a">
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' height='1' width='1'></svg>" alt="tree">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="c-separator__line c-separator__line--2 triangle" :class="colorB">
+        <div class="c-separator__line c-separator__line--2 triangle font" :class="colorB">
             <div v-if="withOrnaments">
                 <div class="c-separator__tree c-separator__tree--2-a">
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' height='1' width='1'></svg>" alt="tree">
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="c-separator__line c-separator__line--1 triangle" :class="colorB">
+        <div class="c-separator__line c-separator__line--1 triangle font" :class="colorB">
             <div v-if="withOrnaments">
                 <div class="c-separator__tree c-separator__tree--1-a">
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' height='1' width='1'></svg>" alt="tree">
