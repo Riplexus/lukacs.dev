@@ -1,13 +1,14 @@
 <template>
     <figure class="c-image">
-        <transition name="fade">
-            <div v-if="!isLoaded" class="c-image__placeholder placeholder"></div>
-        </transition>
         <img
+            v-if="src"
             v-lazy-src="src"
             :alt="alt"
             class="c-image__item"
             @load="imageLoaded">
+        <transition name="fade">
+            <div v-if="!isLoaded" class="c-image__placeholder placeholder"></div>
+        </transition>
         <div class="font c-image__border" />
     </figure>
 </template>
@@ -19,7 +20,7 @@
         props: {
             src: {
                 type: String,
-                required: true
+                default: null
             },
             alt: {
                 type: String,
@@ -56,6 +57,11 @@
         right: 0;
         bottom: 0;
         border-radius: 12px;
+        transition: opacity .2s;
+
+        .inactive & {
+            opacity: .5;
+        }
     }
 
     .c-image__border {
@@ -85,7 +91,7 @@
     }
 
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .2s;
+        transition: opacity .4s;
     }
 
     .fade-enter, .fade-leave-to {

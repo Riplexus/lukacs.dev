@@ -5,7 +5,7 @@
             alt="project image"
             class="c-article__image" />
 
-        <section class="article">
+        <section v-if="article" class="article">
             <h2>Project A: a simple refactoring</h2>
             <p>Let's get wild today. All you need is a dream in your heart, and an almighty knife. Anything you want
                 to do you can do here.</p>
@@ -14,6 +14,13 @@
                 have.</p>
             <p>Tree trunks grow however makes them happy. Every highlight needs it's own personal shadow. Isn't that
                 fantastic that you can make whole mountains in minutes?</p>
+        </section>
+
+        <section v-else class="article">
+            <h2 class="placeholder"></h2>
+            <p class="placeholder"></p>
+            <p class="placeholder"></p>
+            <p class="placeholder"></p>
         </section>
     </article>
 </template>
@@ -25,15 +32,22 @@
         name: 'ArticleView',
         components: { ImageView },
 
-        data() {
-            const random = Math.random()*1000|0;
+        props: {
+            article: {
+                type: Object,
+                default: null
+            }
+        },
 
-            return {
-                imgSrc: `https://picsum.photos/400/200?grayscale&random=${random}`
-            };
+        computed: {
+            imgSrc() {
+                const random = Math.random()*1000|0;
+                return this.article ? `https://picsum.photos/400/200?grayscale&random=${random}` : null;
+            }
         }
     };
 </script>
+
 
 <style scoped lang="scss">
     .c-article {
@@ -48,7 +62,7 @@
 
         .c-article__image {
             flex: 0 1 400px;
-            margin: 6px 24px 24px;
+            margin: 0 24px 24px;
 
             &::before {
                 content: '';
@@ -56,6 +70,26 @@
                 width: 100%;
                 padding-bottom: 50%;
             }
+        }
+
+        .placeholder {
+            border-radius: 6px;
+            transition: opacity .2s;
+
+            .inactive & {
+                opacity: .5;
+            }
+        }
+
+        h2.placeholder {
+            margin-bottom: 12px;
+            height: 29px + 12px;
+        }
+
+        p.placeholder {
+            height: 100px;
+            margin-right: 12px;
+            &:last-child { margin-right: 0; }
         }
     }
 </style>

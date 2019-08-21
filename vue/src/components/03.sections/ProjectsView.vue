@@ -1,6 +1,8 @@
 <template>
-    <section class="section c-projects">
-        <article-view />
+    <section v-if="articles.length" class="section c-projects">
+        <article-view v-for="article in articles" :key="article.id" />
+    </section>
+    <section v-else class="section c-projects">
         <article-view />
         <article-view />
     </section>
@@ -10,7 +12,13 @@
     import ArticleView from '../02.items/ArticleView';
     export default {
         name: 'ProjectsView',
-        components: { ArticleView }
+        components: { ArticleView },
+
+        data() {
+            return {
+                articles: []
+            };
+        }
     };
 </script>
 
