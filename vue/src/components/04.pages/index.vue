@@ -1,7 +1,5 @@
 <template>
     <main class="p-index" role="main">
-        <welcome-view class="black100" />
-
         <tech-radar-view
             class="dark60 toDark60"
             :class="{ inactive: !techRadarActive }"
@@ -27,11 +25,10 @@
     import TechRadarView from '../03.sections/TechRadarView';
     import ProjectsView from '../03.sections/ProjectsView';
     import SeparatorView from '../03.sections/SeparatorView';
-    import WelcomeView from '../03.sections/WelcomeView';
 
     export default {
         name: 'Index',
-        components: { WelcomeView, ProjectsView, TechRadarView, SeparatorView },
+        components: { ProjectsView, TechRadarView, SeparatorView },
 
         computed: {
             activeSections() {
@@ -110,6 +107,6 @@
     }
 
     .toDark60 {
-        background: linear-gradient(to top, nth(map-get($dark, 'bgr'), 3) 0%, nth(map-get($black, 'bgr'), 5) 70%);
+        background: linear-gradient(to top, nth(map-get($dark, 'bgr'), 3) 0%, nth(map-get($black, 'bgr'), 5) 100%);
     }
 </style>

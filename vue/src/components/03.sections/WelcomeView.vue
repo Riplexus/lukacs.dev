@@ -1,9 +1,7 @@
 <template>
-    <header class="c-welcome">
-        <section class="section">
-            <h1>Hello there.</h1>
-        </section>
-    </header>
+    <section class="c-welcome section">
+        <h1>Hello there.</h1>
+    </section>
 </template>
 
 <script>

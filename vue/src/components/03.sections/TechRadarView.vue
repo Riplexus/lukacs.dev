@@ -1,43 +1,46 @@
 <template>
     <section class="c-tech-radar">
-        <div class="stars_large" />
-        <div class="stars_medium" />
-        <div class="stars_small" />
+        <figure class="stars_large" />
+        <figure class="stars_medium" />
+        <figure class="stars_small" />
 
         <article class="section c-tech-radar__content">
             <figure class="c-tech-radar__image">
-                <section class="c-tech-radar__level c-tech-radar__hold">
-                </section>
+                <div 
+                    class="c-tech-radar__level c-tech-radar__assess"
+                    :class="{ 'active': selection === 'assess' }"
+                    @click="select('assess', $event)">
+                    <div 
+                        v-for="n in assessIndizes"
+                        :key="n"
+                        class="c-tech-radar__tech c-tech-radar__tech--assess"
+                        :class="getClasses(n+1, 's')" />
+                </div>
 
-                <section class="c-tech-radar__level c-tech-radar__assess"
-                         :class="{ 'active': selection === 'assess' }"
-                         @click="select('assess', $event)">
-                    <div v-for="n in assessIndizes"
-                         :key="n"
-                         class="c-tech-radar__tech c-tech-radar__tech--assess"
-                         :class="getClasses(n+1, 's')" />
-                </section>
+                <div 
+                    class="c-tech-radar__level c-tech-radar__trial"
+                    :class="{ 'active': selection === 'trial' }"
+                    @click="select('trial', $event)">
+                    <div 
+                        v-for="n in trialsIndizes"
+                        :key="n"
+                        class="c-tech-radar__tech c-tech-radar__tech--trial"
+                        :class="getClasses(n+1, 't')" />
+                </div>
 
-                <section class="c-tech-radar__level c-tech-radar__trial"
-                         :class="{ 'active': selection === 'trial' }"
-                         @click="select('trial', $event)">
-                    <div v-for="n in trialsIndizes"
-                         :key="n"
-                         class="c-tech-radar__tech c-tech-radar__tech--trial"
-                         :class="getClasses(n+1, 't')" />
-                </section>
-
-                <section class="c-tech-radar__level c-tech-radar__adopt"
-                         :class="{ 'active': selection === 'adopt' }"
-                         @click="select('adopt', $event)">
-                    <div v-for="n in adoptsIndizes"
-                         :key="n"
-                         class="c-tech-radar__tech c-tech-radar__tech--adopt"
-                         :class="getClasses(n+1, 'a')" />
-                </section>
+                <div 
+                    class="c-tech-radar__level c-tech-radar__adopt"
+                    :class="{ 'active': selection === 'adopt' }"
+                    @click="select('adopt', $event)">
+                    <div 
+                        v-for="n in adoptsIndizes"
+                        :key="n"
+                        class="c-tech-radar__tech c-tech-radar__tech--adopt"
+                        :class="getClasses(n+1, 'a')" />
+                </div>
             </figure>
 
-            <section v-if="!selection" class="article c-tech-radar__details">
+            <!--<section v-if="!selection" class="article c-tech-radar__details">
                 <h2>Technology Radar</h2>
                 <p>Living in a fast changing world where your colleagues greet you daily with "look at this new
                     framework" it became useful for the mental health to thoroughly validate upcoming trends first.</p>
@@ -45,32 +48,38 @@
                     the principles and ideas of <a href="https://www.thoughtworks.com/" target="_blank" rel="noopener">ThoughtWorks</a>.</p>
                 <p>Take a look at their work. It's especially useful in business environments with large teams to
                     maintain a stable technology stack. Touch or click the rings for my personal technology stack.</p>
-            </section>
+            </section>-->
 
-            <section v-else-if="selection === 'assess'" class="article c-tech-radar__details">
+            <section v-if="selection === 'assess'" class="article c-tech-radar__details">
                 <h2>Technology Radar - Assess</h2>
                 <ul v-for="n in 4" :key="n">
-                    <li v-for="i in 6" :key="n*i" v-if="assess[n*i]">
-                        {{ assess[n*i].title }}
-                    </li>
+                    <template v-for="i in 6">
+                        <li v-if="assess[n*i]" :key="n*i">
+                            {{ assess[n*i].title }}
+                        </li>
+                    </template>
                 </ul>
             </section>
 
             <section v-else-if="selection === 'trial'" class="article c-tech-radar__details">
                 <h2>Technology Radar - Trial</h2>
                 <ul v-for="n in 4" :key="n">
-                    <li v-for="i in 6" :key="n*i" v-if="trials[n*i]">
-                        {{ trials[n*i].title }}
-                    </li>
+                    <template v-for="i in 6">
+                        <li :key="n*i" v-if="trials[n*i]">
+                            {{ trials[n*i].title }}
+                        </li>
+                    </template>
                 </ul>
             </section>
 
             <section v-else-if="selection === 'adopt'" class="article c-tech-radar__details">
                 <h2>Technology Radar - Adopt</h2>
                 <ul v-for="n in 4" :key="n">
-                    <li v-for="i in 6" :key="n*i" v-if="adopts[n*i]">
-                        {{ adopts[n*i].title }}
-                    </li>
+                    <template v-for="i in 6">
+                        <li :key="n*i" v-if="adopts[n*i]">
+                            {{ adopts[n*i].title }}
+                        </li>
+                    </template>
                 </ul>
             </section>
         </article>
@@ -215,9 +224,8 @@
 <style scoped lang="scss">
     @import "../../assets/colors";
 
-    $totalWidth: 400px;
-    $totalHeight: 400px;
-    $bgr-color: rgba(255, 255, 255, .15);
+    $totalWidth: 500px;
+    $bgr-color: rgb(255, 255, 255);
 
     $ratio: 4/9;
     $adoptSize: 40%;
@@ -232,11 +240,12 @@
         min-height: 100%;
         max-width: 1400px;
         margin: auto;
+        padding-top: 300px;
     }
 
     .c-tech-radar__image {
         flex: 0 0 $totalWidth;
-        min-height: $totalHeight;
+        min-height: $totalWidth;
         position: relative;
         margin: 6px 24px;
         transition: opacity .2s;
@@ -245,6 +254,16 @@
             opacity: .3;
         }
     }
+
+
+     $minOpacity: .5;
+
+     @keyframes sparkle {
+         0% { opacity: $minOpacity; }
+         45% { opacity: $minOpacity; }
+         55% { opacity: 1; }
+         100% { opacity: $minOpacity; }
+     }
 
     /*
      * Tech Radar level rings
@@ -267,43 +286,46 @@
         margin-top: -$size/2;
         margin-left: -$size/2;
         border-width: ($size - $prevSize) / 100% / 2 * $totalWidth - $borderMargin;
+        cursor: pointer;
+        opacity: $minOpacity;
+        animation: sparkle 10s linear random(8) + 0s infinite;
+        &:hover,
+        &.active,
+        &:hover.active { 
+            animation: none;
+            opacity: 1; 
+        }
+    }
+    @mixin levelBackground($background) {
+        border-width: 0;
+        background: $background;
+        &:hover { background: fade-in($background, .02); }
+        &.active { background: fade-in($background, .06); }
+        &:hover.active { background: fade-in($background, .08); }
+    }
+    @mixin levelBorder($background) {
+        border-color: $background;
+        &:hover { border-color: fade-in($background, .02); }
+        &.active { border-color: fade-in($background, .06); }
+        &:hover.active { border-color: fade-in($background, .08); }
     }
 
     .c-tech-radar__adopt {
+        $background: transparentize($bgr-color, 1);
         @include level($adoptSize, $adoptSize);
-
-        cursor: pointer;
-        border-width: 0;
-        background: $bgr-color;
-        &:hover { background: fade-in($bgr-color, .02); }
-        &.active { background: fade-in($bgr-color, .06); }
-        &:hover.active { background: fade-in($bgr-color, .08); }
+        @include levelBackground($background);
     }
 
     .c-tech-radar__trial {
+        $background: transparentize($bgr-color, 1);
         @include level($trialSize, $adoptSize);
-
-        cursor: pointer;
-        border-color: fade-out($bgr-color, .04);
-        &:hover { border-color: fade-out($bgr-color, .02); }
-        &.active { border-color: fade-in($bgr-color, .02); }
-        &:hover.active { border-color: fade-in($bgr-color, .04); }
+        @include levelBorder($background);
     }
 
     .c-tech-radar__assess {
+        $background: transparentize($bgr-color, 1);
         @include level($assessSize, $trialSize);
-
-        cursor: pointer;
-        border-color: fade-out($bgr-color, .08);
-        &:hover { border-color: fade-out($bgr-color, .06); }
-        &.active { border-color: fade-out($bgr-color, .02); }
-        &:hover.active { border-color: $bgr-color; }
-    }
-
-    .c-tech-radar__hold {
-        @include level($holdSize, $assessSize);
-
-        border-color: fade-out($bgr-color, .12);
+        @include levelBorder($background);
     }
 
     /*
@@ -312,28 +334,30 @@
 
     .c-tech-radar__tech { position: absolute; }
 
-    .c-tech-radar__tech--assess { opacity: .3; }
-    .c-tech-radar__tech--trial { opacity: .6; }
-    .c-tech-radar__tech--adopt { opacity: .9; }
+    @mixin background($color) {
+        background: $color;
+        .c-tech-radar__trial & { background: lighten($color, 15%); }
+        .c-tech-radar__assess & { background: lighten($color, 40%); }
+    }
 
-    .c-tech-radar__tech--tool { background: #379392; }
-    .c-tech-radar__tech--language { background: #d62828; }
-    .c-tech-radar__tech--platform { background: #f46036; }
-    .c-tech-radar__tech--teq { background: #1481ba; }
+    .c-tech-radar__tech--tool { @include background(#379392); }
+    .c-tech-radar__tech--language { @include background(#d62828); }
+    .c-tech-radar__tech--platform { @include background(#f46036); }
+    .c-tech-radar__tech--teq { @include background(#1481ba); }
 
     @mixin tech($size, $radius, $angle) {
         width: $size;
         height: $size;
-        border-radius: 40%;
+        border-radius: 100%;
         top: 50%;
         left: 50%;
-        margin-top: -$size/2 - $radius;
+        margin-top: -$size/2 - $radius/400px*$totalWidth;
         margin-left: -$size/2;
         transform: rotate($angle);
-        transform-origin: $size/2 $size/2 + $radius;
+        transform-origin: $size/2 $size/2 + $radius/400px*$totalWidth;
     }
 
-    $size: 10px;
+    $size: 4px/400px*$totalWidth;
     .c-tech-radar__tech--s1 { @include tech($size, 147px, 8deg); }
     .c-tech-radar__tech--s2 { @include tech($size, 151px, 23deg); }
     .c-tech-radar__tech--s3 { @include tech($size, 152px, 38deg); }
@@ -359,7 +383,7 @@
     .c-tech-radar__tech--s23 { @include tech($size, 150px, -75deg); }
     .c-tech-radar__tech--s24 { @include tech($size, 153px, -84deg); }
 
-    $size: 14px;
+    $size: 8px/400px*$totalWidth;
     .c-tech-radar__tech--t1 { @include tech($size, 101px, 4deg); }
     .c-tech-radar__tech--t2 { @include tech($size, 119px, 21deg); }
     .c-tech-radar__tech--t3 { @include tech($size, 113px, 42deg); }
@@ -385,7 +409,7 @@
     .c-tech-radar__tech--t23 { @include tech($size, 103px, -72deg); }
     .c-tech-radar__tech--t24 { @include tech($size, 119px, -84deg); }
 
-    $size: 16px;
+    $size: 12px/400px*$totalWidth;
     .c-tech-radar__tech--a1 { @include tech($size, 65px, 14deg); }
     .c-tech-radar__tech--a2 { @include tech($size, 40px, 27deg); }
     .c-tech-radar__tech--a3 { @include tech($size, 60px, 38deg); }
@@ -419,30 +443,31 @@
         $shadow: ();
 
         @for $i from 1 to $stars {
-            $shadow: append($shadow, (random(2000) + 0px) (random(800) + 0px) rgba(255, 255, 255, .4), comma)
+            $shadow: append($shadow, (random(4000) + 0px) (random(1000) + 0px) rgba(255, 255, 255, 1), comma)
         }
 
         @return $shadow;
     }
 
-    .stars_large {
-        box-shadow: stars(120);
+    @mixin starsGroup($amount, $size) {
+        box-shadow: stars($amount);
         background: transparent;
-        height: 3px;
-        width: 3px;
+        height: $size;
+        width: $size;
+        border-radius: $size/2;
+        opacity: $minOpacity;
+        animation: sparkle 10s linear random(8) + 0s infinite;
+    }
+
+    .stars_large {
+        @include starsGroup(50, 4px);
     }
 
     .stars_medium {
-        box-shadow: stars(200);
-        background: transparent;
-        height: 2px;
-        width: 2px;
+        @include starsGroup(100, 2px);
     }
 
     .stars_small {
-        box-shadow: stars(280);
-        background: transparent;
-        height: 1px;
-        width: 1px;
+        @include starsGroup(280, 1px);
     }
 </style>

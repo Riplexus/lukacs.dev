@@ -1,10 +1,8 @@
 <template>
     <div>
-        <header-view class="black100" />
         <router-view class="main" />
+        <header-view class="black120" />
         <footer-view class="black120" />
-
-
     </div>
 </template>
 
