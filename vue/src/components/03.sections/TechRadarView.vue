@@ -5,7 +5,7 @@
         <figure class="stars_small" />
 
         <article class="section c-tech-radar__content">
-            <figure class="c-tech-radar__image">
+            <!--<figure class="c-tech-radar__image">
                 <div 
                     class="c-tech-radar__level c-tech-radar__assess"
                     :class="{ 'active': selection === 'assess' }"
@@ -38,7 +38,7 @@
                         class="c-tech-radar__tech c-tech-radar__tech--adopt"
                         :class="getClasses(n+1, 'a')" />
                 </div>
-            </figure>
+            </figure>-->
 
             <!--<section v-if="!selection" class="article c-tech-radar__details">
                 <h2>Technology Radar</h2>
@@ -232,6 +232,10 @@
     $trialSize: (100% - $adoptSize) * $ratio + $adoptSize;
     $assessSize: (100% - $trialSize) * $ratio + $trialSize;
     $holdSize: (100% - $assessSize) * $ratio + $assessSize;
+
+    .c-tech-radar {
+        height: 80vh;
+    }
 
     .c-tech-radar__content {
         display: flex;

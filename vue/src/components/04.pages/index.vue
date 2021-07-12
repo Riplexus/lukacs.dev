@@ -14,10 +14,10 @@
             :class="{ inactive: !projectsActive }"
             ref="projects" />
 
-        <separator-view
+        <!--<separator-view
             color-a="black100"
             color-b="black120"
-            :with-ornaments="false" />
+            :with-ornaments="false" />-->
     </main>
 </template>
 

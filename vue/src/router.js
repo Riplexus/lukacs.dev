@@ -25,7 +25,7 @@ export default new Router({
             component: IndexPage
         },
         {
-            path: '/projects',
+            path: '/coming-soon',
             name: 'projects',
             component: IndexPage
         },

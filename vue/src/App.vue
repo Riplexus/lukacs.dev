@@ -1,8 +1,8 @@
 <template>
     <div>
         <router-view class="main" />
-        <header-view class="black120" />
-        <footer-view class="black120" />
+        <!--<header-view class="black120" />-->
+        <!--<footer-view class="black120" />-->
     </div>
 </template>
 
