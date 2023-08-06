@@ -33,7 +33,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "sass": "1.64.2",
     "sass-loader": "13.3.2",
-    "stylelint": "10.1.0",
+    "stylelint": "15.10.2",
     "stylelint-config-standard": "18.3.0",
     "stylelint-processor-html": "1.0.0",
     "stylelint-scss": "3.9.3",
