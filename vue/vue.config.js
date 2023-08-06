@@ -1,9 +1,12 @@
 module.exports = {
     chainWebpack: config => {
-        config.plugins.delete('prefetch');
+        config.plugins.delete('prefetch')
     },
+
     pwa: {
         themeColor: '#121619',
         msTileColor: '#121619'
-    }
-};
+    },
+
+    transpileDependencies: true
+}

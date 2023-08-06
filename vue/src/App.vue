@@ -7,18 +7,14 @@
 </template>
 
 <script>
-    import HeaderView from './components/03.sections/HeaderView';
-    import FooterView from './components/03.sections/FooterView';
-
     export default {
         name: 'App',
-        components: {FooterView, HeaderView},
         metaInfo: {
             link: [
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap' }
             ]
         }
-    };
+    }
 </script>
 
 <style lang="scss">

@@ -110,7 +110,7 @@
 <script>
     export default {
         name: 'HeaderView'
-    };
+    }
 </script>
 
 <style scoped lang="scss">

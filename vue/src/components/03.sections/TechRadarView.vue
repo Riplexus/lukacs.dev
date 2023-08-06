@@ -6,33 +6,33 @@
 
         <article class="section c-tech-radar__content">
             <!--<figure class="c-tech-radar__image">
-                <div 
+                <div
                     class="c-tech-radar__level c-tech-radar__assess"
                     :class="{ 'active': selection === 'assess' }"
                     @click="select('assess', $event)">
-                    <div 
+                    <div
                         v-for="n in assessIndizes"
                         :key="n"
                         class="c-tech-radar__tech c-tech-radar__tech--assess"
                         :class="getClasses(n+1, 's')" />
                 </div>
 
-                <div 
+                <div
                     class="c-tech-radar__level c-tech-radar__trial"
                     :class="{ 'active': selection === 'trial' }"
                     @click="select('trial', $event)">
-                    <div 
+                    <div
                         v-for="n in trialsIndizes"
                         :key="n"
                         class="c-tech-radar__tech c-tech-radar__tech--trial"
                         :class="getClasses(n+1, 't')" />
                 </div>
 
-                <div 
+                <div
                     class="c-tech-radar__level c-tech-radar__adopt"
                     :class="{ 'active': selection === 'adopt' }"
                     @click="select('adopt', $event)">
-                    <div 
+                    <div
                         v-for="n in adoptsIndizes"
                         :key="n"
                         class="c-tech-radar__tech c-tech-radar__tech--adopt"
@@ -91,7 +91,7 @@
     export default {
         name: 'TechRadarView',
 
-        data() {
+        data () {
             return {
                 selection: null,
                 assess: [
@@ -184,50 +184,52 @@
                     { title: '6' },
                     { title: '6' }
                 ]
-            };
+            }
         },
 
         computed: {
-            assessIndizes() {
-                return this.assess.map((_, i) => i).filter(_ => !!this.assess[_]);
+            assessIndizes () {
+                return this.assess.map((_, i) => i).filter(_ => !!this.assess[_])
             },
-            trialsIndizes() {
-                return this.trials.map((_, i) => i).filter(_ => !!this.trials[_]);
+            trialsIndizes () {
+                return this.trials.map((_, i) => i).filter(_ => !!this.trials[_])
             },
-            adoptsIndizes() {
-                return this.adopts.map((_, i) => i).filter(_ => !!this.adopts[_]);
+            adoptsIndizes () {
+                return this.adopts.map((_, i) => i).filter(_ => !!this.adopts[_])
             }
         },
 
         methods: {
-            select(ring, ev) {
-                if (ring === this.selection) { return this.deselect(); }
-                document.removeEventListener('click', this.deselect);
-                this.selection = ring;
-                document.addEventListener('click', this.deselect);
-                ev.stopPropagation();
+            select (ring, ev) {
+                if (ring === this.selection) { return this.deselect() }
+                document.removeEventListener('click', this.deselect)
+                this.selection = ring
+                document.addEventListener('click', this.deselect)
+                ev.stopPropagation()
             },
-            deselect() {
-                document.removeEventListener('click', this.deselect);
-                this.selection = null;
+            deselect () {
+                document.removeEventListener('click', this.deselect)
+                this.selection = null
             },
-            getClasses(n, prefix) {
+            getClasses (n, prefix) {
                 return {
                     [`c-tech-radar__tech--${prefix}${n}`]: true,
                     [`c-tech-radar__tech--${n <= 6 ? 'tool' : n <= 12 ? 'language' : n <= 18 ? 'platform' : 'teq'}`]: true
-                };
+                }
             }
         }
-    };
+    }
 </script>
 
 <style scoped lang="scss">
+    @use "sass:math";
+
     @import "../../assets/colors";
 
     $totalWidth: 500px;
     $bgr-color: rgb(255, 255, 255);
 
-    $ratio: 4/9;
+    $ratio: math.div(4, 9);
     $adoptSize: 40%;
     $trialSize: (100% - $adoptSize) * $ratio + $adoptSize;
     $assessSize: (100% - $trialSize) * $ratio + $trialSize;
@@ -259,7 +261,6 @@
         }
     }
 
-
      $minOpacity: .5;
 
      @keyframes sparkle {
@@ -287,17 +288,17 @@
     @mixin level($size, $prevSize: 0, $borderMargin: 7px) {
         width: $size;
         height: $size;
-        margin-top: -$size/2;
-        margin-left: -$size/2;
-        border-width: ($size - $prevSize) / 100% / 2 * $totalWidth - $borderMargin;
+        margin-top: - math.div($size, 2);
+        margin-left: - math.div($size, 2);
+        border-width: math.div(math.div($size - $prevSize, 100%), 2) * $totalWidth - $borderMargin;
         cursor: pointer;
         opacity: $minOpacity;
         animation: sparkle 10s linear random(8) + 0s infinite;
         &:hover,
         &.active,
-        &:hover.active { 
+        &:hover.active {
             animation: none;
-            opacity: 1; 
+            opacity: 1;
         }
     }
     @mixin levelBackground($background) {
@@ -355,13 +356,13 @@
         border-radius: 100%;
         top: 50%;
         left: 50%;
-        margin-top: -$size/2 - $radius/400px*$totalWidth;
-        margin-left: -$size/2;
+        margin-top: - math.div($size, 2) - math.div($radius, 400px)*$totalWidth;
+        margin-left: - math.div($size, 2);
         transform: rotate($angle);
-        transform-origin: $size/2 $size/2 + $radius/400px*$totalWidth;
+        transform-origin: math.div($size, 2) math.div($size, 2) + math.div($radius, 400px)*$totalWidth;
     }
 
-    $size: 4px/400px*$totalWidth;
+    $size: math.div(4px, 400px)*$totalWidth;
     .c-tech-radar__tech--s1 { @include tech($size, 147px, 8deg); }
     .c-tech-radar__tech--s2 { @include tech($size, 151px, 23deg); }
     .c-tech-radar__tech--s3 { @include tech($size, 152px, 38deg); }
@@ -387,7 +388,7 @@
     .c-tech-radar__tech--s23 { @include tech($size, 150px, -75deg); }
     .c-tech-radar__tech--s24 { @include tech($size, 153px, -84deg); }
 
-    $size: 8px/400px*$totalWidth;
+    $size: math.div(8px, 400px)*$totalWidth;
     .c-tech-radar__tech--t1 { @include tech($size, 101px, 4deg); }
     .c-tech-radar__tech--t2 { @include tech($size, 119px, 21deg); }
     .c-tech-radar__tech--t3 { @include tech($size, 113px, 42deg); }
@@ -413,7 +414,7 @@
     .c-tech-radar__tech--t23 { @include tech($size, 103px, -72deg); }
     .c-tech-radar__tech--t24 { @include tech($size, 119px, -84deg); }
 
-    $size: 12px/400px*$totalWidth;
+    $size: math.div(12px, 400px)*$totalWidth;
     .c-tech-radar__tech--a1 { @include tech($size, 65px, 14deg); }
     .c-tech-radar__tech--a2 { @include tech($size, 40px, 27deg); }
     .c-tech-radar__tech--a3 { @include tech($size, 60px, 38deg); }
@@ -458,7 +459,7 @@
         background: transparent;
         height: $size;
         width: $size;
-        border-radius: $size/2;
+        border-radius: math.div($size, 2);
         opacity: $minOpacity;
         animation: sparkle 10s linear random(8) + 0s infinite;
     }

@@ -28,18 +28,18 @@
             }
         },
 
-        data() {
+        data () {
             return {
                 isLoaded: false
-            };
+            }
         },
 
         methods: {
-            imageLoaded() {
-                this.isLoaded = true;
+            imageLoaded () {
+                this.isLoaded = true
             }
         }
-    };
+    }
 </script>
 
 <style scoped lang="scss">

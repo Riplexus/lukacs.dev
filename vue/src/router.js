@@ -1,14 +1,14 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 
-import IndexPage from './components/04.pages/index';
+import IndexPage from './components/04.pages/index'
 
-Vue.use(Router);
+Vue.use(Router)
 
 const handleError = (err) => {
-    console.error('Page routing failed');
-    throw err;
-};
+    console.error('Page routing failed')
+    throw err
+}
 
 export default new Router({
     mode: 'history',
@@ -37,7 +37,7 @@ export default new Router({
         {
             path: '/colors',
             name: 'colors',
-            component: () => import( /* webpackChunkName: "colors" */ './components/04.pages/colors.vue').catch(handleError)
+            component: () => import(/* webpackChunkName: "colors" */ './components/04.pages/colors.vue').catch(handleError)
         }
     ]
-});
+})

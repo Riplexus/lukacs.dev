@@ -14,7 +14,7 @@
 <script>
     export default {
         name: 'FooterView'
-    };
+    }
 </script>
 
 <style scoped lang="scss">

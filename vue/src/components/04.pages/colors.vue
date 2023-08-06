@@ -65,12 +65,12 @@
 </template>
 
 <script>
-    import ColorView from '../02.items/ColorView';
+    import ColorView from '../02.items/ColorView'
 
     export default {
         name: 'Colors',
         components: { ColorView }
-    };
+    }
 </script>
 
 <style scoped lang="scss">

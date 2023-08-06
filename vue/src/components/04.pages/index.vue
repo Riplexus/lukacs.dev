@@ -22,81 +22,81 @@
 </template>
 
 <script>
-    import TechRadarView from '../03.sections/TechRadarView';
-    import ProjectsView from '../03.sections/ProjectsView';
-    import SeparatorView from '../03.sections/SeparatorView';
+    import TechRadarView from '../03.sections/TechRadarView'
+    import ProjectsView from '../03.sections/ProjectsView'
+    import SeparatorView from '../03.sections/SeparatorView'
 
     export default {
         name: 'Index',
         components: { ProjectsView, TechRadarView, SeparatorView },
 
         computed: {
-            activeSections() {
-                return this.$store.state.activeSections;
+            activeSections () {
+                return this.$store.state.activeSections
             },
-            techRadarActive() {
-                return !this.activeSections.length || this.activeSections.indexOf('tech-radar') !== -1;
+            techRadarActive () {
+                return !this.activeSections.length || this.activeSections.indexOf('tech-radar') !== -1
             },
-            projectsActive() {
-                return !this.activeSections.length || this.activeSections.indexOf('projects') !== -1;
+            projectsActive () {
+                return !this.activeSections.length || this.activeSections.indexOf('projects') !== -1
             }
         },
 
         watch: {
-            activeSections() {
-                for (let section in this.$refs) {
-                    if (this.activeSections.indexOf(section) === -1) { continue; }
-                    const route = section === 'welcome' || section === 'tech-radar' ? 'home' : section;
+            activeSections () {
+                for (const section in this.$refs) {
+                    if (this.activeSections.indexOf(section) === -1) { continue }
+                    const route = section === 'welcome' || section === 'tech-radar' ? 'home' : section
                     if (this.$route.name !== route) {
                         this.$router.replace({
                             name: route
-                        });
+                        })
                     }
-                    break;
+                    break
                 }
             }
         },
 
-        created() {
+        created () {
             if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', this.handleScroll);
+                window.addEventListener('scroll', this.handleScroll)
             }
         },
 
-        mounted() {
-            this.handleScroll();
+        mounted () {
+            this.handleScroll()
         },
 
-        destroyed() {
+        destroyed () {
             if (typeof window !== 'undefined') {
-                window.removeEventListener('scroll', this.handleScroll);
+                window.removeEventListener('scroll', this.handleScroll)
             }
         },
 
         methods: {
-            handleScroll() {
-                const top = window.innerHeight * .4;
-                const bottom = window.innerHeight * .6;
+            handleScroll () {
+                const top = window.innerHeight * 0.4
+                const bottom = window.innerHeight * 0.6
 
-                for (let section in this.$refs) {
-                    const position = (this.$refs[section].$el || this.$refs[section]).getBoundingClientRect();
-                    const isVisible = position.bottom >= top && position.top <= bottom;
-                    const isActive = this.activeSections.indexOf(section) !== -1;
+                for (const section in this.$refs) {
+                    const position = (this.$refs[section].$el || this.$refs[section]).getBoundingClientRect()
+                    const isVisible = position.bottom >= top && position.top <= bottom
+                    const isActive = this.activeSections.indexOf(section) !== -1
 
                     if (isVisible && !isActive) {
-                        this.$store.commit('addActiveSection', section);
+                        this.$store.commit('addActiveSection', section)
                     } else if (!isVisible && isActive) {
-                        this.$store.commit('removeActiveSection', section);
+                        this.$store.commit('removeActiveSection', section)
                     }
 
                     // stop the loop if our current element is already below the viewport bottom
                     if (position.top >= bottom) {
-                        break;
+                        break
                     }
                 }
             }
         }
-    };
+    }
 </script>
 
 <style scoped lang="scss">

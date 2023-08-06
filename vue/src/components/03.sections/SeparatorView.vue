@@ -97,29 +97,29 @@
             }
         },
 
-        created() {
+        created () {
             if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', this.handleScroll);
+                window.addEventListener('scroll', this.handleScroll)
             }
         },
 
-        mounted() {
-            this.handleScroll();
+        mounted () {
+            this.handleScroll()
         },
 
-        destroyed() {
+        destroyed () {
             if (typeof window !== 'undefined') {
-                window.removeEventListener('scroll', this.handleScroll);
+                window.removeEventListener('scroll', this.handleScroll)
             }
         },
 
         methods: {
-            handleScroll() {
-                const position = this.$el.getBoundingClientRect();
-                this.$el.style.height = `${position.top / window.innerHeight * 170 + 30}px`;
+            handleScroll () {
+                const position = this.$el.getBoundingClientRect()
+                this.$el.style.height = `${position.top / window.innerHeight * 170 + 30}px`
             }
         }
-    };
+    }
 </script>
 
 <style scoped lang="scss">

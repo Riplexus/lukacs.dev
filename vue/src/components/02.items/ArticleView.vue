@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import ImageView from '../01.elements/ImageView';
+    import ImageView from '../01.elements/ImageView'
 
     export default {
         name: 'ArticleView',
@@ -40,14 +40,13 @@
         },
 
         computed: {
-            imgSrc() {
-                const random = Math.random()*1000|0;
-                return this.article ? `https://picsum.photos/400/200?grayscale&random=${random}` : null;
+            imgSrc () {
+                const random = Math.random() * 1000 | 0
+                return this.article ? `https://picsum.photos/400/200?grayscale&random=${random}` : null
             }
         }
-    };
+    }
 </script>
-
 
 <style scoped lang="scss">
     .c-article {

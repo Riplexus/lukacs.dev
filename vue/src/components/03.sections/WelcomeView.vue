@@ -7,7 +7,7 @@
 <script>
     export default {
         name: 'WelcomeView'
-    };
+    }
 </script>
 
 <style scoped lang="scss">
