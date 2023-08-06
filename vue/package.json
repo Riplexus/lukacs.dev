@@ -10,33 +10,31 @@
     "lint:css": "stylelint '**/*.vue' --syntax scss"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
-    "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
-    "vue-meta": "^2.2.1",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "core-js": "3.32.0",
+    "register-service-worker": "1.7.2",
+    "vue": "2.7.14",
+    "vue-meta": "2.4.0",
+    "vue-router": "3.6.5",
+    "vuex": "3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-e2e-cypress": "5.0.8",
-    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@babel/core": "7.22.9",
+    "@babel/eslint-parser": "7.22.9",
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-plugin-eslint": "5.0.8",
     "@vue/cli-plugin-pwa": "5.0.8",
     "@vue/cli-service": "5.0.8",
-    "@vue/eslint-config-standard": "^6.1.0",
-    "babel-eslint": "^10.1.0",
-    "cypress": "9.7.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^7.0.0",
+    "@vue/eslint-config-standard": "8.0.1",
+    "eslint": "8.46.0",
+    "eslint-plugin-import": "2.28.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-vue": "9.16.1",
     "sass": "1.64.2",
     "sass-loader": "13.3.2",
-    "stylelint": "10.1.0",
-    "stylelint-config-standard": "18.3.0",
-    "stylelint-processor-html": "1.0.0",
-    "stylelint-scss": "3.9.3",
-    "vue-template-compiler": "^2.6.10"
+    "stylelint": "15.10.2",
+    "stylelint-config-standard": "34.0.0",
+    "stylelint-scss": "5.0.1",
+    "vue-template-compiler": "2.7.14"
   }
 }

@@ -68,7 +68,7 @@
     import ColorView from '../02.items/ColorView'
 
     export default {
-        name: 'Colors',
+        name: 'ColorsPage',
         components: { ColorView }
     }
 </script>

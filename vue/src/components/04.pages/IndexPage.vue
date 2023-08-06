@@ -27,7 +27,7 @@
     import SeparatorView from '../03.sections/SeparatorView'
 
     export default {
-        name: 'Index',
+        name: 'IndexPage',
         components: { ProjectsView, TechRadarView, SeparatorView },
 
         computed: {
