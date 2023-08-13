@@ -3,38 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "NODE_ENV=production vue-cli-service build",
-    "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "lint:css": "stylelint '**/*.vue' --syntax scss"
   },
   "dependencies": {
-    "core-js": "3.32.0",
-    "register-service-worker": "1.7.2",
     "vue": "2.7.14",
     "vue-meta": "2.4.0",
     "vue-router": "3.6.5",
     "vuex": "3.6.2"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
-    "@babel/eslint-parser": "7.22.9",
-    "@vue/cli-plugin-babel": "5.0.8",
-    "@vue/cli-plugin-eslint": "5.0.8",
-    "@vue/cli-plugin-pwa": "5.0.8",
-    "@vue/cli-service": "5.0.8",
+    "@vitejs/plugin-vue": "4.2.3",
     "@vue/eslint-config-standard": "8.0.1",
+    "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-plugin-import": "2.28.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-vue": "9.16.1",
     "sass": "1.64.2",
-    "sass-loader": "13.3.2",
     "stylelint": "15.10.2",
     "stylelint-config-standard": "34.0.0",
     "stylelint-scss": "5.0.1",
-    "vue-template-compiler": "2.7.14"
+    "vite": "4.4.9",
+    "vite-plugin-vue2": "2.0.3"
   }
 }

@@ -5,7 +5,7 @@
         <figure class="stars_small" />
 
         <article class="section c-tech-radar__content">
-            <!--<figure class="c-tech-radar__image">
+            <figure class="c-tech-radar__image">
                 <div
                     class="c-tech-radar__level c-tech-radar__assess"
                     :class="{ 'active': selection === 'assess' }"
@@ -38,17 +38,17 @@
                         class="c-tech-radar__tech c-tech-radar__tech--adopt"
                         :class="getClasses(n+1, 'a')" />
                 </div>
-            </figure>-->
+            </figure>
 
-            <!--<section v-if="!selection" class="article c-tech-radar__details">
-                <h2>Technology Radar</h2>
-                <p>Living in a fast changing world where your colleagues greet you daily with "look at this new
-                    framework" it became useful for the mental health to thoroughly validate upcoming trends first.</p>
-                <p>One way of keeping track of your evaluation process is with a <span class="italic">technology radar</span> following
-                    the principles and ideas of <a href="https://www.thoughtworks.com/" target="_blank" rel="noopener">ThoughtWorks</a>.</p>
-                <p>Take a look at their work. It's especially useful in business environments with large teams to
-                    maintain a stable technology stack. Touch or click the rings for my personal technology stack.</p>
-            </section>-->
+            <!--            <section v-if="!selection" class="article c-tech-radar__details">-->
+            <!--                <h2>Technology Radar</h2>-->
+            <!--                <p>Living in a fast changing world where your colleagues greet you daily with "look at this new-->
+            <!--                    framework" it became useful to thoroughly validate upcoming trends first.</p>-->
+            <!--                <p>One way of keeping track of your evaluation process is with a <span class="italic">technology radar</span> following-->
+            <!--                    the principles and ideas of <a href="https://www.thoughtworks.com/" target="_blank" rel="noopener">ThoughtWorks</a>.</p>-->
+            <!--                <p>Take a look at their work. I find it especially useful in business environments with large teams to-->
+            <!--                    maintain a stable technology stack. Touch or click the rings for my personal technology stack.</p>-->
+            <!--            </section>-->
 
             <section v-if="selection === 'assess'" class="article c-tech-radar__details">
                 <h2>Technology Radar - Assess</h2>
@@ -203,7 +203,7 @@
             select (ring, ev) {
                 if (ring === this.selection) { return this.deselect() }
                 document.removeEventListener('click', this.deselect)
-                this.selection = ring
+                // this.selection = ring
                 document.addEventListener('click', this.deselect)
                 ev.stopPropagation()
             },
@@ -243,7 +243,7 @@
         display: flex;
         flex-wrap: wrap-reverse;
         justify-content: center;
-        min-height: 100%;
+        min-height: 200px;
         max-width: 1400px;
         margin: auto;
         padding-top: 300px;
@@ -291,28 +291,28 @@
         margin-top: - math.div($size, 2);
         margin-left: - math.div($size, 2);
         border-width: math.div(math.div($size - $prevSize, 100%), 2) * $totalWidth - $borderMargin;
-        cursor: pointer;
+        //cursor: pointer;
         opacity: $minOpacity;
         animation: sparkle 10s linear random(8) + 0s infinite;
-        &:hover,
-        &.active,
-        &:hover.active {
-            animation: none;
-            opacity: 1;
-        }
+        //&:hover,
+        //&.active,
+        //&:hover.active {
+        //    animation: none;
+        //    opacity: 1;
+        //}
     }
     @mixin levelBackground($background) {
         border-width: 0;
         background: $background;
-        &:hover { background: fade-in($background, .02); }
-        &.active { background: fade-in($background, .06); }
-        &:hover.active { background: fade-in($background, .08); }
+        //&:hover { background: fade-in($background, .02); }
+        //&.active { background: fade-in($background, .06); }
+        //&:hover.active { background: fade-in($background, .08); }
     }
     @mixin levelBorder($background) {
         border-color: $background;
-        &:hover { border-color: fade-in($background, .02); }
-        &.active { border-color: fade-in($background, .06); }
-        &:hover.active { border-color: fade-in($background, .08); }
+        //&:hover { border-color: fade-in($background, .02); }
+        //&.active { border-color: fade-in($background, .06); }
+        //&:hover.active { border-color: fade-in($background, .08); }
     }
 
     .c-tech-radar__adopt {

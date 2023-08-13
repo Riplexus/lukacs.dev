@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import IndexPage from './components/04.pages/IndexPage'
+import IndexPage from './components/04.pages/IndexPage.vue'
 
 Vue.use(Router)
 
@@ -12,7 +12,7 @@ const handleError = (err) => {
 
 export default new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: import.meta.env.BASE_URL,
     routes: [
         {
             path: '/',
@@ -37,7 +37,7 @@ export default new Router({
         {
             path: '/colors',
             name: 'colors',
-            component: () => import(/* webpackChunkName: "colors" */ './components/04.pages/ColorsPage.vue').catch(handleError)
+            component: () => import('./components/04.pages/ColorsPage.vue').catch(handleError)
         }
     ]
 })

@@ -9,22 +9,22 @@
             color-a="dark60"
             color-b="black100" />
 
-        <projects-view
-            class="black100"
-            :class="{ inactive: !projectsActive }"
-            ref="projects" />
+        <!--        <projects-view-->
+        <!--            class="black100"-->
+        <!--            :class="{ inactive: true }"-->
+        <!--            ref="projects" />-->
 
-        <!--<separator-view
+        <separator-view
             color-a="black100"
             color-b="black120"
-            :with-ornaments="false" />-->
+            :with-ornaments="false" />
     </main>
 </template>
 
 <script>
-    import TechRadarView from '../03.sections/TechRadarView'
-    import ProjectsView from '../03.sections/ProjectsView'
-    import SeparatorView from '../03.sections/SeparatorView'
+    import TechRadarView from '../03.sections/TechRadarView.vue'
+    import ProjectsView from '../03.sections/ProjectsView.vue'
+    import SeparatorView from '../03.sections/SeparatorView.vue'
 
     export default {
         name: 'IndexPage',

@@ -65,7 +65,7 @@
 </template>
 
 <script>
-    import ColorView from '../02.items/ColorView'
+    import ColorView from '../02.items/ColorView.vue'
 
     export default {
         name: 'ColorsPage',

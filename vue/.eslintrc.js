@@ -1,7 +1,8 @@
 module.exports = {
     root: true,
     env: {
-        node: true
+        node: true,
+        es2022: true
     },
     extends: [
       'plugin:vue/essential',
@@ -17,9 +18,5 @@ module.exports = {
         'vue/script-indent': ['error', 4, {
             baseIndent: 1
         }]
-    },
-    parserOptions: {
-      parser: '@babel/eslint-parser',
-      ecmaVersion: 2020
     }
 }

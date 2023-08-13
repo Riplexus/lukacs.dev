@@ -1,9 +1,9 @@
 <template>
     <article class="c-article">
-        <image-view
-            :src="imgSrc"
-            alt="project image"
-            class="c-article__image" />
+        <!--        <image-view-->
+        <!--            :src="imgSrc"-->
+        <!--            alt="project image"-->
+        <!--            class="c-article__image" />-->
 
         <section v-if="article" class="article">
             <h2>Project A: a simple refactoring</h2>
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-    import ImageView from '../01.elements/ImageView'
+    // import ImageView from '../01.elements/ImageView.vue'
 
     export default {
         name: 'ArticleView',
-        components: { ImageView },
+        // components: { ImageView },
 
         props: {
             article: {
@@ -76,7 +76,7 @@
             transition: opacity .2s;
 
             .inactive & {
-                opacity: .5;
+                opacity: .3;
             }
         }
     }

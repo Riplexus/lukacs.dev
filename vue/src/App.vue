@@ -1,14 +1,16 @@
 <template>
     <div>
         <router-view class="main" />
-        <!--<header-view class="black120" />-->
-        <!--<footer-view class="black120" />-->
+        <footer-view class="black120" />
     </div>
 </template>
 
 <script>
+    import FooterView from '@/components/03.sections/FooterView.vue'
+
     export default {
         name: 'App',
+        components: { FooterView },
         metaInfo: {
             link: [
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap' }
@@ -26,8 +28,8 @@
     }
 
     html {
-        font-family: 'Raleway', Arial, sans-serif;
-        font-size: 12pt;
+        font-family: 'Raleway', sans-serif;
+        font-size: 11pt;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -75,12 +77,12 @@
 
         h2 {
             flex: 0 0 calc(100% - 12px);
-            margin: 0 6px 12px;
+            margin: 0 6px 6px;
             min-height: 29px + 12px;
         }
 
         p {
-            flex: 1 0 250px;
+            flex: 1 0 calc(250px - 12px);
             max-width: 450px;
             min-height: 100px;
             margin: 6px;
