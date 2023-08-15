@@ -2,8 +2,8 @@
   <main class="p-index" role="main">
     <tech-radar-view
       class="dark60 toDark60"
-      :class="{ inactive: !techRadarActive }"
-      ref="tech-radar" />
+      :class="{ inactive: !isTechRadarActive.value }"
+      :ref="el => { sections['tech-radar'] = el }" />
 
     <separator-view
       color-a="dark60"
@@ -12,42 +12,38 @@
 </template>
 
 <script>
+  import { ref, computed, watch } from 'vue'
   import TechRadarView from '../03.sections/TechRadarView.vue'
   import SeparatorView from '../03.sections/SeparatorView.vue'
+  import { useActiveSectionStore } from '@/stores/activeSection'
 
   export default {
     name: 'IndexPage',
-    components: { TechRadarView, SeparatorView },
-
-    computed: {
-      activeSections() {
-        return this.$store.state.activeSections
-      },
-      techRadarActive() {
-        return !this.activeSections.length || this.activeSections.indexOf('tech-radar') !== -1
-      },
-      projectsActive() {
-        return !this.activeSections.length || this.activeSections.indexOf('projects') !== -1
-      }
+    components: {
+      TechRadarView,
+      SeparatorView
     },
+    setup() {
+      const sections = ref({})
 
-    watch: {
-      activeSections: {
-        deep: true,
-        handler() {
-          for (const section in this.$refs) {
-            if (this.activeSections.indexOf(section) === -1) {
-              continue
-            }
-            const route = section === 'welcome' || section === 'tech-radar' ? 'home' : section
-            if (this.$route.name !== route) {
-              this.$router.replace({
-                name: route
-              })
-            }
-            break
-          }
+      const activeSectionStore = useActiveSectionStore()
+      const activeSections = computed(() => activeSectionStore.activeSections)
+      const isTechRadarActive = computed(() => !activeSections.value.length || activeSections.value.indexOf('tech-radar') !== -1)
+
+      watch(activeSections, () => {
+        const activeSection = activeSections.value[0]
+        const route = activeSection === 'welcome' || activeSection === 'tech-radar' ? 'home' : activeSection
+
+        if (this.$route.name !== route) {
+          this.$router.replace({ name: route })
         }
+      })
+
+      return {
+        sections,
+        activeSectionStore,
+        activeSections,
+        isTechRadarActive
       }
     },
 
@@ -72,21 +68,19 @@
         const top = window.innerHeight * 0.4
         const bottom = window.innerHeight * 0.6
 
-        for (const section in this.$refs) {
-          const position = (this.$refs[section].$el || this.$refs[section]).getBoundingClientRect()
+        for (const section in this.sections) {
+          const position = (this.sections[section].$el || this.sections[section]).getBoundingClientRect()
           const isVisible = position.bottom >= top && position.top <= bottom
           const isActive = this.activeSections.indexOf(section) !== -1
 
           if (isVisible && !isActive) {
-            this.$store.commit('addActiveSection', section)
+            this.activeSectionStore.addActiveSection(section)
           } else if (!isVisible && isActive) {
-            this.$store.commit('removeActiveSection', section)
+            this.activeSectionStore.removeActiveSection(section)
           }
 
           // stop the loop if our current element is already below the viewport bottom
-          if (position.top >= bottom) {
-            break
-          }
+          if (position.top >= bottom) break
         }
       }
     }

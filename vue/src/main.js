@@ -1,7 +1,7 @@
 import { createApp, h } from 'vue'
 import App from './App.vue'
 import useRouter from './router'
-import useStore from './store'
+import useStore from './stores'
 import useLazySrc from './directives/lazySrc'
 
 const app = createApp({
