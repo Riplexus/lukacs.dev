@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import VueMeta from 'vue-meta'
+import { createApp, h } from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
-import './directives/lazySrc'
+import useRouter from './router'
+import useStore from './store'
+import useLazySrc from './directives/lazySrc'
 
-Vue.use(VueMeta)
+const app = createApp({
+    render() { return h(App) }
+})
 
-Vue.config.productionTip = false
+useLazySrc(app)
+useStore(app)
+const { router } = useRouter(app)
 
-new Vue({
-    router,
-    store,
-    render: h => h(App)
-}).$mount('#app')
+await router.isReady()
+app.mount('#app')

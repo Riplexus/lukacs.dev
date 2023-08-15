@@ -1,26 +1,31 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default (app) => {
+  const store = createStore({
     state: () => {
-        return {
-            activeSections: []
-        }
+      return {
+        activeSections: []
+      }
     },
     actions: {
 
     },
     mutations: {
-        addActiveSection (state, section) {
-            if (state.activeSections.indexOf(section) !== -1) { return }
-            state.activeSections.push(section)
-        },
-        removeActiveSection (state, section) {
-            const index = state.activeSections.indexOf(section)
-            if (index === -1) { return }
-            state.activeSections.splice(index, 1)
-        }
+      addActiveSection(state, section) {
+        if (state.activeSections.indexOf(section) !== -1) { return }
+        state.activeSections.push(section)
+      },
+      removeActiveSection(state, section) {
+        const index = state.activeSections.indexOf(section)
+        if (index === -1) { return }
+        state.activeSections.splice(index, 1)
+      }
     }
-})
+  })
+
+  app.use(store)
+
+  return {
+    store
+  }
+}
