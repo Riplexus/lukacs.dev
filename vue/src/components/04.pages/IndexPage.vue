@@ -11,80 +11,58 @@
   </main>
 </template>
 
-<script>
-  import { ref, computed, watch } from 'vue'
+<script setup>
+  import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
   import TechRadarView from '../03.sections/TechRadarView.vue'
   import SeparatorView from '../03.sections/SeparatorView.vue'
   import { useActiveSectionStore } from '@/stores/activeSection'
+  import debounce from '@/helpers/debounce'
 
-  export default {
-    name: 'IndexPage',
-    components: {
-      TechRadarView,
-      SeparatorView
-    },
-    setup() {
-      const sections = ref({})
+  const router = useRouter()
+  const route = useRoute()
+  const sections = ref({})
 
-      const activeSectionStore = useActiveSectionStore()
-      const activeSections = computed(() => activeSectionStore.activeSections)
-      const isTechRadarActive = computed(() => !activeSections.value.length || activeSections.value.indexOf('tech-radar') !== -1)
+  const activeSectionStore = useActiveSectionStore()
+  const isTechRadarActive = computed(() => !activeSectionStore.activeSections.length || activeSectionStore.activeSections.indexOf('tech-radar') !== -1)
 
-      watch(activeSections, () => {
-        const activeSection = activeSections.value[0]
-        const route = activeSection === 'welcome' || activeSection === 'tech-radar' ? 'home' : activeSection
+  const updateActiveSections = debounce(() => {
+    const top = window.innerHeight * 0.4
+    const bottom = window.innerHeight * 0.6
 
-        if (this.$route.name !== route) {
-          this.$router.replace({ name: route })
-        }
-      })
+    for (const section in sections.value) {
+      const position = (sections.value[section].$el || sections.value[section])?.getBoundingClientRect()
+      const isVisible = position.bottom >= top && position.top <= bottom
+      const isActive = activeSectionStore.activeSections.indexOf(section) !== -1
 
-      return {
-        sections,
-        activeSectionStore,
-        activeSections,
-        isTechRadarActive
+      if (isVisible && !isActive) {
+        activeSectionStore.addActiveSection(section)
+      } else if (!isVisible && isActive) {
+        activeSectionStore.removeActiveSection(section)
       }
-    },
 
-    created() {
-      if (typeof window !== 'undefined') {
-        window.addEventListener('scroll', this.handleScroll)
-      }
-    },
-
-    mounted() {
-      this.handleScroll()
-    },
-
-    unmounted() {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', this.handleScroll)
-      }
-    },
-
-    methods: {
-      handleScroll() {
-        const top = window.innerHeight * 0.4
-        const bottom = window.innerHeight * 0.6
-
-        for (const section in this.sections) {
-          const position = (this.sections[section].$el || this.sections[section]).getBoundingClientRect()
-          const isVisible = position.bottom >= top && position.top <= bottom
-          const isActive = this.activeSections.indexOf(section) !== -1
-
-          if (isVisible && !isActive) {
-            this.activeSectionStore.addActiveSection(section)
-          } else if (!isVisible && isActive) {
-            this.activeSectionStore.removeActiveSection(section)
-          }
-
-          // stop the loop if our current element is already below the viewport bottom
-          if (position.top >= bottom) break
-        }
-      }
+      // stop the loop if our current element is already below the viewport bottom
+      if (position.top >= bottom) break
     }
-  }
+  }, 50)
+
+  onMounted(() => {
+    window.addEventListener('scroll', updateActiveSections)
+    updateActiveSections()
+
+    watch(activeSectionStore.activeSections, () => {
+      const activeSection = activeSectionStore.activeSections[0]
+      const activeRoute = activeSection === 'welcome' || activeSection === 'tech-radar' ? 'home' : activeSection
+
+      if (route.name !== activeRoute) {
+        router.replace({ name: activeRoute })
+      }
+    })
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', updateActiveSections)
+  })
 </script>
 
 <style scoped lang="scss">
