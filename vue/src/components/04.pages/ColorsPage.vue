@@ -88,7 +88,7 @@
     }
 
     .p-colors__color {
-      flex: 1 1 math.div(100, 6%);
+      flex: 1 1 math.div(100, 0.06);
     }
   }
 </style>

@@ -12,5 +12,4 @@ useLazySrc(app)
 useStore(app)
 const { router } = useRouter(app)
 
-await router.isReady()
-app.mount('#app')
+router.isReady().then(() => app.mount('#app'))

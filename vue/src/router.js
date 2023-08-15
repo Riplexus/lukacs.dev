@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { createMetaManager, plugin as metaPlugin } from 'vue-meta'
 import IndexPage from './components/04.pages/IndexPage.vue'
 
@@ -9,7 +9,7 @@ const handleError = (err) => {
 
 export default (app) => {
   const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     // base: import.meta.env.BASE_URL,
     routes: [
       {
