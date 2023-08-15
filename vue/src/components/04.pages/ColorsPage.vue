@@ -64,13 +64,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import ColorView from '../02.items/ColorView.vue'
-
-  export default {
-    name: 'ColorsPage',
-    components: { ColorView }
-  }
 </script>
 
 <style scoped lang="scss">

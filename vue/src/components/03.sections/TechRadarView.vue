@@ -87,136 +87,66 @@
   </section>
 </template>
 
-<script>
-  export default {
-    name: 'TechRadarView',
+<script setup>
+  import { computed, ref } from 'vue'
 
-    data() {
-      return {
-        selection: null,
-        assess: [
-          // tools
-          { title: '1' },
-          { title: '2' },
-          { title: '3' },
-          null,
-          { title: '5' },
-          { title: '6' },
-          // languages & frameworks
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // platforms
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // techniques
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' }
-        ],
-        trials: [
-          // tools
-          { title: '1' },
-          { title: '2' },
-          { title: '3' },
-          { title: '4' },
-          { title: '5' },
-          { title: '6' },
-          // languages & frameworks
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // platforms
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // techniques
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' }
-        ],
-        adopts: [
-          // tools
-          { title: '1' },
-          { title: '2' },
-          { title: '3' },
-          { title: '4' },
-          { title: '5' },
-          { title: '6' },
-          // languages & frameworks
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // platforms
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          // techniques
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' },
-          { title: '6' }
-        ]
-      }
-    },
+  const dummyData = [
+    // tools
+    { title: '1' },
+    { title: '2' },
+    { title: '3' },
+    null,
+    { title: '5' },
+    { title: '6' },
+    // languages & frameworks
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    // platforms
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    // techniques
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' },
+    { title: '6' }
+  ]
 
-    computed: {
-      assessIndizes() {
-        return this.assess.map((_, i) => i).filter(_ => !!this.assess[_])
-      },
-      trialsIndizes() {
-        return this.trials.map((_, i) => i).filter(_ => !!this.trials[_])
-      },
-      adoptsIndizes() {
-        return this.adopts.map((_, i) => i).filter(_ => !!this.adopts[_])
-      }
-    },
+  const selection = ref(null)
+  const assess = ref(JSON.parse(JSON.stringify(dummyData)))
+  const trials = ref(JSON.parse(JSON.stringify(dummyData)))
+  const adopts = ref(JSON.parse(JSON.stringify(dummyData)))
 
-    methods: {
-      select(ring, ev) {
-        if (ring === this.selection) { return this.deselect() }
-        document.removeEventListener('click', this.deselect)
-        // this.selection = ring
-        document.addEventListener('click', this.deselect)
-        ev.stopPropagation()
-      },
-      deselect() {
-        document.removeEventListener('click', this.deselect)
-        this.selection = null
-      },
-      getClasses(n, prefix) {
-        return {
-          [`c-tech-radar__tech--${prefix}${n}`]: true,
-          [`c-tech-radar__tech--${n <= 6 ? 'tool' : n <= 12 ? 'language' : n <= 18 ? 'platform' : 'teq'}`]: true
-        }
-      }
+  const getValidIndizes = (arr) => arr.map((_, i) => i).filter(_ => !!arr[_])
+  const assessIndizes = computed(() => getValidIndizes(assess.value))
+  const trialsIndizes = computed(() => getValidIndizes(trials.value))
+  const adoptsIndizes = computed(() => getValidIndizes(adopts.value))
+
+  const deselect = () => {
+    document.removeEventListener('click', deselect)
+    selection.value = null
+  }
+  const select = (ring, ev) => {
+    if (ring === selection.value) { return deselect() }
+    document.removeEventListener('click', deselect)
+    // this.selection = ring
+    document.addEventListener('click', deselect)
+    ev.stopPropagation()
+  }
+
+  const getClasses = (n, prefix) => {
+    return {
+      [`c-tech-radar__tech--${prefix}${n}`]: true,
+      [`c-tech-radar__tech--${n <= 6 ? 'tool' : n <= 12 ? 'language' : n <= 18 ? 'platform' : 'teq'}`]: true
     }
   }
 </script>

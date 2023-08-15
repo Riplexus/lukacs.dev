@@ -13,33 +13,22 @@
   </figure>
 </template>
 
-<script>
-  export default {
-    name: 'ImageView',
+<script setup>
+  import { ref } from 'vue'
 
-    props: {
-      src: {
-        type: String,
-        default: null
-      },
-      alt: {
-        type: String,
-        required: true
-      }
+  defineProps({
+    src: {
+      type: String,
+      default: null
     },
-
-    data() {
-      return {
-        isLoaded: false
-      }
-    },
-
-    methods: {
-      imageLoaded() {
-        this.isLoaded = true
-      }
+    alt: {
+      type: String,
+      required: true
     }
-  }
+  })
+
+  const isLoaded = ref(false)
+  const imageLoaded = () => (isLoaded.value = true)
 </script>
 
 <style scoped lang="scss">

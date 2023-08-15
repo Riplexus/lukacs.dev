@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { createMetaManager, plugin as metaPlugin } from 'vue-meta'
 import IndexPage from './components/04.pages/IndexPage.vue'
 
 const handleError = (err) => {
@@ -39,14 +38,10 @@ export default (app) => {
       }
     ]
   })
-  const metaManager = createMetaManager()
 
   app.use(router)
-  app.use(metaManager)
-  app.use(metaPlugin)
 
   return {
-    router,
-    metaManager
+    router
   }
 }

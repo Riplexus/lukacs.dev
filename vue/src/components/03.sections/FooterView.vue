@@ -117,12 +117,8 @@
   </footer>
 </template>
 
-<script>
+<script setup>
   import SeparatorView from '@/components/03.sections/SeparatorView.vue'
-  export default {
-    name: 'FooterView',
-    components: { SeparatorView }
-  }
 </script>
 
 <style scoped lang="scss">

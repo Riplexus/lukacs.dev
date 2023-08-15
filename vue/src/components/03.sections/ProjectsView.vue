@@ -8,19 +8,11 @@
   </section>
 </template>
 
-<script>
+<script setup>
   import ArticleView from '../02.items/ArticleView.vue'
+  import { ref } from 'vue'
 
-  export default {
-    name: 'ProjectsView',
-    components: { ArticleView },
-
-    data() {
-      return {
-        articles: []
-      }
-    }
-  }
+  const articles = ref([])
 </script>
 
 <style scoped lang="scss">

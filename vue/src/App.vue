@@ -3,20 +3,8 @@
   <footer-view class="black120" />
 </template>
 
-<script>
+<script setup>
   import FooterView from '@/components/03.sections/FooterView.vue'
-
-  export default {
-    name: 'App',
-    components: { FooterView },
-    metaInfo() {
-      return {
-        link: [
-          { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap' }
-        ]
-      }
-    }
-  }
 </script>
 
 <style lang="scss">

@@ -8,16 +8,13 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'ColorView',
-    props: {
-      color: {
-        type: String,
-        required: true
-      }
+<script setup>
+  defineProps({
+    color: {
+      type: String,
+      required: true
     }
-  }
+  })
 </script>
 
 <style scoped lang="scss">

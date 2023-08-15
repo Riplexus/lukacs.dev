@@ -1,5 +1,5 @@
 <template>
-  <figure class="c-separator" :class="colorA">
+  <figure class="c-separator" :class="colorA" ref="root">
     <div class="svg-def">
       <svg id="tree" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path d="M0 100 L50 0 L100 100 Z"/>
@@ -78,48 +78,60 @@
   </figure>
 </template>
 
-<script>
-  export default {
-    name: 'SeparatorView',
+<script setup>
+  import { ref, onMounted, onUnmounted } from 'vue'
 
-    props: {
-      colorA: {
-        type: String,
-        required: true
-      },
-      colorB: {
-        type: String,
-        required: true
-      },
-      withOrnaments: {
-        type: Boolean,
-        default: true
-      }
+  defineProps({
+    colorA: {
+      type: String,
+      required: true
     },
-
-    created() {
-      if (typeof window !== 'undefined') {
-        window.addEventListener('scroll', this.handleScroll)
-      }
+    colorB: {
+      type: String,
+      required: true
     },
+    withOrnaments: {
+      type: Boolean,
+      default: true
+    }
+  })
 
-    mounted() {
-      this.handleScroll()
-    },
+  const root = ref(null)
+  const height = ref(null)
 
-    unmounted() {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', this.handleScroll)
-      }
-    },
+  const updateHeight = () => {
+    const position = root.value.getBoundingClientRect()
+    height.value = `${Math.round(position.top / window.innerHeight * 170 + 30)}px`
+  }
 
-    methods: {
-      handleScroll() {
-        const position = this.$el.getBoundingClientRect()
-        this.$el.style.height = `${position.top / window.innerHeight * 170 + 30}px`
+  const fpsInterval = 1000 / 60
+  let then
+  let done
+  function step() {
+    if (!then) then = Date.now()
+    const now = Date.now()
+    const elapsed = now - then
+    if (elapsed > fpsInterval) {
+      then = now - (elapsed % fpsInterval)
+      if (height.value !== root.value.style.height) {
+        root.value.style.height = height.value
       }
     }
+    if (!done) window.requestAnimationFrame(step)
   }
+
+  onMounted(() => {
+    window.addEventListener('resize', updateHeight)
+    window.addEventListener('scroll', updateHeight)
+    updateHeight()
+    window.requestAnimationFrame(step)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateHeight)
+    window.removeEventListener('scroll', updateHeight)
+    done = true
+  })
 </script>
 
 <style scoped lang="scss">

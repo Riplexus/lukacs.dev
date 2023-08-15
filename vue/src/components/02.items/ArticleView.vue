@@ -25,27 +25,21 @@
   </article>
 </template>
 
-<script>
-    // import ImageView from '../01.elements/ImageView.vue'
+<script setup>
+  // import { computed } from 'vue'
 
-  export default {
-    name: 'ArticleView',
-    // components: { ImageView },
-
-    props: {
-      article: {
-        type: Object,
-        default: null
-      }
-    },
-
-    computed: {
-      imgSrc() {
-        const random = Math.random() * 1000 | 0
-        return this.article ? `https://picsum.photos/400/200?grayscale&random=${random}` : null
-      }
+  // const props = defineProps({
+  defineProps({
+    article: {
+      type: Object,
+      default: null
     }
-  }
+  })
+
+  // const imgSrc = computed(() => {
+  //   const random = Math.random() * 1000 | 0
+  //   return props.article ? `https://picsum.photos/400/200?grayscale&random=${random}` : null
+  // })
 </script>
 
 <style scoped lang="scss">
