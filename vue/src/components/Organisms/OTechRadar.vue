@@ -1,8 +1,7 @@
 <template>
-  <section class="c-tech-radar">
-    <figure class="stars_large" />
-    <figure class="stars_medium" />
-    <figure class="stars_small" />
+  <section class="c-tech-radar relative">
+    <m-stars />
+    <div class="bg-gradient-to-b from-ebony-900 from-opacity-0 to-ebony-900 to-opacity-55 absolute top-85% left-0 right-0 bottom-0" />
 
     <article class="section c-tech-radar__content">
       <figure class="c-tech-radar__image">
@@ -83,12 +82,12 @@
         </ul>
       </section>
     </article>
-
   </section>
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref } from 'vue';
+  import MStars from '@/components/Molecules/MStars.vue';
 
   const dummyData = [
     // tools
@@ -118,44 +117,44 @@
     { title: '6' },
     { title: '6' },
     { title: '6' },
-    { title: '6' }
-  ]
+    { title: '6' },
+  ];
 
-  const selection = ref(null)
-  const assess = ref(JSON.parse(JSON.stringify(dummyData)))
-  const trials = ref(JSON.parse(JSON.stringify(dummyData)))
-  const adopts = ref(JSON.parse(JSON.stringify(dummyData)))
+  const selection = ref(null);
+  const assess = ref(JSON.parse(JSON.stringify(dummyData)));
+  const trials = ref(JSON.parse(JSON.stringify(dummyData)));
+  const adopts = ref(JSON.parse(JSON.stringify(dummyData)));
 
-  const getValidIndizes = (arr) => arr.map((_, i) => i).filter(_ => !!arr[_])
-  const assessIndizes = computed(() => getValidIndizes(assess.value))
-  const trialsIndizes = computed(() => getValidIndizes(trials.value))
-  const adoptsIndizes = computed(() => getValidIndizes(adopts.value))
+  const getValidIndizes = (arr) => arr.map((_, i) => i).filter(_ => !!arr[_]);
+  const assessIndizes = computed(() => getValidIndizes(assess.value));
+  const trialsIndizes = computed(() => getValidIndizes(trials.value));
+  const adoptsIndizes = computed(() => getValidIndizes(adopts.value));
 
   const deselect = () => {
-    document.removeEventListener('click', deselect)
-    selection.value = null
-  }
+    document.removeEventListener('click', deselect);
+    selection.value = null;
+  };
   const select = (ring, ev) => {
-    if (ring === selection.value) { return deselect() }
-    document.removeEventListener('click', deselect)
+    if (ring === selection.value) { return deselect(); }
+    document.removeEventListener('click', deselect);
     // this.selection = ring
-    document.addEventListener('click', deselect)
-    ev.stopPropagation()
-  }
+    document.addEventListener('click', deselect);
+    ev.stopPropagation();
+  };
 
   const getClasses = (n, prefix) => {
     return {
       [`c-tech-radar__tech--${prefix}${n}`]: true,
-      [`c-tech-radar__tech--${n <= 6 ? 'tool' : n <= 12 ? 'language' : n <= 18 ? 'platform' : 'teq'}`]: true
-    }
-  }
+      [`c-tech-radar__tech--${n <= 6 ? 'tool' : n <= 12 ? 'language' : n <= 18 ? 'platform' : 'teq'}`]: true,
+    };
+  };
 </script>
 
 <style scoped lang="scss">
   @use "sass:color";
   @use "sass:math";
   @use "sass:list";
-  @import "../../assets/colors";
+  @import "../../assets/animations";
 
   $totalWidth: 500px;
   $bgr-color: rgb(255 255 255);
@@ -190,18 +189,9 @@
     }
   }
 
-  $minOpacity: .5;
-
-  @keyframes sparkle {
-    0% { opacity: $minOpacity; }
-    45% { opacity: $minOpacity; }
-    55% { opacity: 1; }
-    100% { opacity: $minOpacity; }
-  }
-
   /*
-     * Tech Radar level rings
-     */
+   * Tech Radar level rings
+   */
 
   .c-tech-radar__level {
     position: absolute;
@@ -222,8 +212,8 @@
     border-width: math.div(math.div($size - $prevSize, 100%), 2) * $totalWidth - $borderMargin;
 
     // cursor: pointer;
-    opacity: $minOpacity;
-    animation: sparkle 10s linear math.random(8) + 0s infinite;
+    opacity: .5;
+    animation: sparkle 20s linear math.random(8) + 0s infinite;
 
     // &:hover,
     // &.active,
@@ -377,40 +367,4 @@
   .c-tech-radar__tech--a22 { @include tech($size, 35px, -62deg); }
   .c-tech-radar__tech--a23 { @include tech($size, 63px, -58deg); }
   .c-tech-radar__tech--a24 { @include tech($size, 64px, -80deg); }
-
-  /*
-     * Night sky
-     */
-
-  @function stars($stars) {
-    $shadow: ();
-
-    @for $i from 1 to $stars {
-      $shadow: list.append($shadow, (math.random(4000) + 1px) (math.random(1000) + 1px) rgb(255 255 255 / 100%), comma)
-    }
-
-    @return $shadow;
-  }
-
-  @mixin starsGroup($amount, $size) {
-    box-shadow: stars($amount);
-    background: transparent;
-    height: $size;
-    width: $size;
-    border-radius: math.div($size, 2);
-    opacity: $minOpacity;
-    animation: sparkle 10s linear math.random(8) + 0s infinite;
-  }
-
-  .stars_large {
-    @include starsGroup(50, 4px);
-  }
-
-  .stars_medium {
-    @include starsGroup(100, 2px);
-  }
-
-  .stars_small {
-    @include starsGroup(280, 1px);
-  }
 </style>

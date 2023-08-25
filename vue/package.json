@@ -15,6 +15,7 @@
     "vue-router": "4.2.4"
   },
   "devDependencies": {
+    "@iconify-json/ph": "^1.1.6",
     "@vitejs/plugin-vue": "4.2.3",
     "@vue/eslint-config-standard": "8.0.1",
     "autoprefixer": "10.4.14",
@@ -30,6 +31,7 @@
     "stylelint-config-standard-scss": "^10.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-scss": "5.0.1",
+    "unocss": "^0.55.3",
     "vite": "4.4.9"
   }
 }

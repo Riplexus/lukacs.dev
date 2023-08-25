@@ -1,11 +1,11 @@
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
 
 export default (app) => {
-  const pinia = createPinia()
+  const pinia = createPinia();
 
-  app.use(pinia)
+  app.use(pinia);
 
   return {
-    pinia
-  }
-}
+    pinia,
+  };
+};

@@ -1,47 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import IndexPage from './components/04.pages/IndexPage.vue'
-
-const handleError = (err) => {
-    console.error('Page routing failed')
-    throw err
-}
+import { createRouter, createWebHistory } from 'vue-router';
+import PIndex from './components/Pages/PIndex.vue';
 
 export default (app) => {
   const router = createRouter({
     history: createWebHistory(),
-    // base: import.meta.env.BASE_URL,
     routes: [
       {
         path: '/',
         name: 'home',
-        component: IndexPage
+        component: PIndex,
       },
       {
         path: '/tech-radar',
         name: 'tech-radar',
-        component: IndexPage
-      },
-      {
-        path: '/coming-soon',
-        name: 'projects',
-        component: IndexPage
+        component: PIndex,
       },
       {
         path: '/footer',
         name: 'footer',
-        component: IndexPage
+        component: PIndex,
       },
-      {
-        path: '/colors',
-        name: 'colors',
-        component: () => import('./components/04.pages/ColorsPage.vue').catch(handleError)
-      }
-    ]
-  })
+    ],
+  });
 
-  app.use(router)
+  app.use(router);
 
   return {
-    router
-  }
-}
+    router,
+  };
+};
