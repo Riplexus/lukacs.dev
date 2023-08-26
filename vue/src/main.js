@@ -3,6 +3,8 @@ import App from './App.vue';
 import useRouter from './router';
 import useStore from './stores';
 import 'virtual:uno.css';
+import '@/assets/base.scss';
+import '@/assets/animations.scss';
 
 const app = createApp({
   render() { return h(App); },

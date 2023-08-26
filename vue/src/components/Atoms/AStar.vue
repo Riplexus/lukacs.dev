@@ -12,7 +12,6 @@
 <style lang="scss" scoped>
   @use "sass:math";
   @use "sass:list";
-  @import "../../assets/animations";
 
   .a-star {
     box-shadow: v-bind(boxShadow);
