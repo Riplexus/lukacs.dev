@@ -1,6 +1,6 @@
 import 'virtual:uno.css';
-import '@/assets/animations.scss';
-import '@/assets/animations.scss';
+import '@/assets/index.scss';
+import './preview.scss';
 
 /** @type { import('@storybook/vue3').Preview } */
 const preview = {
@@ -15,6 +15,7 @@ const preview = {
         },
       ],
     },
+    controls: { expanded: true },
   },
 };
 
