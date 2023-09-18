@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run storybook:build",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path ../.gitignore --fix src",
     "lint:css": "stylelint src --fix",
     "storybook": "storybook dev -p 6006 --no-open",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build -o dist/storybook"
   },
   "dependencies": {
     "pinia": "2.1.6",

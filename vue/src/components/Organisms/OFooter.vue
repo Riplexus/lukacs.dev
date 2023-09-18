@@ -18,7 +18,7 @@
         <a href="https://github.com/riplexus" target="_blank" rel="noopener">
           <span class="i-ph-github-logo inline-block text-2xl mr-2" />
         </a>
-        <a href="https://github.com/riplexus" target="_blank" rel="noopener">
+        <a href="/storybook/index.html">
           <span class="i-tabler-brand-storybook inline-block text-2xl" />
         </a>
       </div>

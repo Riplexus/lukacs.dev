@@ -6,9 +6,9 @@ export default create({
   // fontBase: '"Open Sans", sans-serif',
   // fontCode: 'monospace',
 
-  brandTitle: `Storybook for lukacs.dev`,
-  brandUrl: 'https://www.lukacs.dev',
-  brandImage: '/img/icons/android-chrome-384x384.png',
+  brandTitle: `Back home`,
+  brandUrl: '/',
+  brandImage: '/android-chrome-512x512.png',
   brandTarget: '_self',
 
   colorPrimary: '#83274e',
