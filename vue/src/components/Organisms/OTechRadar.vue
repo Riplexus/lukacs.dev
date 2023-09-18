@@ -154,7 +154,6 @@
   @use "sass:color";
   @use "sass:math";
   @use "sass:list";
-  @import "../../assets/animations";
 
   $totalWidth: 500px;
   $bgr-color: rgb(255 255 255);

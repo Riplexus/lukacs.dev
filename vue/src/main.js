@@ -3,6 +3,7 @@ import App from './App.vue';
 import useRouter from './router';
 import useStore from './stores';
 import 'virtual:uno.css';
+import '@/assets/index.scss';
 
 const app = createApp({
   render() { return h(App); },
